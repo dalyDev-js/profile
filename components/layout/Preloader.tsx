@@ -19,17 +19,18 @@ export default function Preloader() {
           exit={{ y: "-100%" }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
         >
-          <div className="relative overflow-hidden">
+          <div className="relative">
             <motion.span
-              className="gradient-text text-7xl font-bold tracking-tighter sm:text-9xl"
+              className="gradient-text inline-block text-7xl font-bold sm:text-9xl"
+              style={{ padding: "0 0.1em" }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              AE
+              AD
             </motion.span>
             <motion.div
-              className="absolute bottom-0 left-0 h-full w-full"
+              className="absolute inset-0"
               style={{
                 background: "#0a0a08",
                 transformOrigin: "right",
