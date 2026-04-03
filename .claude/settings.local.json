@@ -5,7 +5,8 @@
       "Bash(netstat:*)",
       "Bash(npx tsc:*)",
       "Bash(node -e:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

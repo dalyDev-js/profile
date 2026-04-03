@@ -257,7 +257,7 @@ function V3Exp({ exp, index, total }: { exp: { company: string; role: string; pe
     <motion.div ref={ref} initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: index * 0.12, duration: 0.7 }}
       style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: "4rem", padding: "3rem 0", borderBottom: index < total - 1 ? `1px solid ${GOLD}20` : "none" }}>
       <div style={{ paddingTop: "0.5rem" }}>
-        <p style={{ fontSize: "0.68rem", color: GOLD, letterSpacing: "0.12em", fontStyle: "italic", fontFamily: "var(--v3-cormorant)", fontSize: "1rem" }}>{exp.period}</p>
+        <p style={{ fontSize: "1rem", color: GOLD, letterSpacing: "0.12em", fontStyle: "italic", fontFamily: "var(--v3-cormorant)" }}>{exp.period}</p>
         <p style={{ fontSize: "0.62rem", letterSpacing: "0.15em", textTransform: "uppercase", color: MUT, marginTop: "0.5rem" }}>{exp.type}</p>
       </div>
       <div>
