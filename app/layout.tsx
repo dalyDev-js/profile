@@ -17,9 +17,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://eldaly.me"),
   title: "Abdulrhman El-Daly | Senior Frontend Developer & UI/UX Developer",
   description:
     "Portfolio of Abdulrhman El-Daly — Senior Frontend Developer and UI/UX Developer with 5+ years of experience building high-performance web applications.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://eldaly.me",
+    title: "Abdulrhman El-Daly | Senior Frontend Developer & UI/UX Developer",
+    description:
+      "Portfolio of Abdulrhman El-Daly — Senior Frontend Developer and UI/UX Developer with 5+ years of experience building high-performance web applications.",
+    siteName: "Abdulrhman El-Daly",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Abdulrhman El-Daly | Senior Frontend Developer & UI/UX Developer",
+    description:
+      "Portfolio of Abdulrhman El-Daly — Senior Frontend Developer and UI/UX Developer with 5+ years of experience building high-performance web applications.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
