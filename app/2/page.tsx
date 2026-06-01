@@ -137,7 +137,7 @@ export default function V2() {
       </V2Sec>
 
       <footer style={{ padding: "1.5rem 3rem", borderTop: `1px solid ${T}15`, display: "flex", justifyContent: "space-between", fontSize: "0.55rem", letterSpacing: "0.2em", color: `${FG}40` }}>
-        <span>© 2025 ABDULRHMAN_EL-DALY.EXE</span>
+        <span>© {new Date().getFullYear()} ABDULRHMAN_EL-DALY.EXE</span>
         <span style={{ color: `${T}60` }}>PROCESS_STATUS: AVAILABLE</span>
       </footer>
     </div>

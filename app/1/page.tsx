@@ -146,7 +146,7 @@ export default function V1() {
       </V1Sec>
 
       <footer style={{ padding: "2rem 3rem", borderTop: `1px solid ${MUT}30`, display: "flex", justifyContent: "space-between", fontSize: "0.6rem", letterSpacing: "0.18em", color: MUT, textTransform: "uppercase" }}>
-        <span>© 2025 Abdulrhman El-Daly</span>
+        <span>© {new Date().getFullYear()} Abdulrhman El-Daly</span>
         <span>Senior Frontend Developer</span>
       </footer>
     </div>

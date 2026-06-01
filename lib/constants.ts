@@ -111,7 +111,7 @@ export const projects: Project[] = [
   {
     title: "GovAcademy Dashboard",
     description:
-      "Comprehensive workspace dashboard for government academy with talent profiles, job management, IDP, and scholarship services.",
+      "Comprehensive workspace dashboard for a UAE government academy with talent profiles, job management, IDP, and scholarship services.",
     tech: ["Next.js", "Redux", "Material UI", "Data Visualization"],
     color: "#eab308",
     image: "/projects/dge.jpg",

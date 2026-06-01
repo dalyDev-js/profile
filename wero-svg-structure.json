@@ -1,0 +1,65 @@
+{
+  "svgCount": 2,
+  "structure": [
+    {
+      "svgIndex": 0,
+      "groups": [
+        {
+          "id": "1011",
+          "transform": "matrix(1,0,0,1,-265.468017578125,215.697998046875)",
+          "children": 1
+        },
+        {
+          "id": "1017",
+          "transform": "matrix(1,0,0,1,2183.800048828125,217.72500610351562)",
+          "children": 1
+        },
+        {
+          "id": "1019",
+          "transform": "matrix(1,0,0,1,2217.487060546875,308.7130126953125)",
+          "children": 1
+        },
+        {
+          "id": "1021",
+          "transform": "matrix(1,0,0,1,2240.81787109375,339.08001708984375)",
+          "children": 1
+        },
+        {
+          "id": "1013",
+          "transform": "matrix(1,0,0,1,-53.666015625,306.59698486328125)",
+          "children": 1
+        },
+        {
+          "id": "1015",
+          "transform": "matrix(1,0,0,1,-135.53201293945312,333.36199951171875)",
+          "children": 1
+        }
+      ]
+    },
+    {
+      "svgIndex": 1,
+      "groups": [
+        {
+          "id": "8730",
+          "transform": null,
+          "children": 1
+        },
+        {
+          "id": "8731",
+          "transform": null,
+          "children": 1
+        },
+        {
+          "id": "8732",
+          "transform": null,
+          "children": 1
+        },
+        {
+          "id": "8733",
+          "transform": null,
+          "children": 1
+        }
+      ]
+    }
+  ]
+}
