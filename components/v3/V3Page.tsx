@@ -491,8 +491,9 @@ function V3Hero({ p }: { p: V3Palette }) {
       style={{
         minHeight: "100vh",
         display: "flex",
-        alignItems: "center",
-        padding: isMobile ? "6rem 1.5rem 4rem" : "8rem 3rem 5rem",
+        flexDirection: isMobile ? "column" : undefined,
+        alignItems: isMobile ? "stretch" : "center",
+        padding: isMobile ? "0" : "8rem 3rem 5rem",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -535,15 +536,19 @@ function V3Hero({ p }: { p: V3Palette }) {
         style={{
           position: "relative",
           zIndex: 1,
-          display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-          gap: isMobile ? "2rem" : "4rem",
-          alignItems: "center",
-          maxWidth: "1200px",
-          margin: "0 auto",
+          display: isMobile ? "contents" : "grid",
+          gridTemplateColumns: isMobile ? undefined : "1fr 1fr",
+          gap: isMobile ? undefined : "4rem",
+          alignItems: isMobile ? undefined : "center",
+          maxWidth: isMobile ? undefined : "1200px",
+          margin: isMobile ? undefined : "0 auto",
           width: "100%",
         }}>
-        <div>
+        <div style={isMobile ? {
+          order: 2,
+          padding: "0.5rem 1.5rem 2.5rem",
+          zIndex: 1,
+        } : undefined}>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -554,7 +559,7 @@ function V3Hero({ p }: { p: V3Palette }) {
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               color: p.pri,
-              marginBottom: "1.5rem",
+              marginBottom: isMobile ? "0.75rem" : "1.5rem",
             }}>
             Senior Frontend Developer · Full-Stack Engineer
           </motion.p>
@@ -568,11 +573,11 @@ function V3Hero({ p }: { p: V3Palette }) {
             }}
             style={{
               fontFamily: "var(--v3-sg)",
-              fontSize: "clamp(40px,5.5vw,80px)",
+              fontSize: isMobile ? "clamp(36px,10vw,52px)" : "clamp(40px,5.5vw,80px)",
               fontWeight: 700,
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
-              marginBottom: "0.6rem",
+              marginBottom: "0.3rem",
             }}>
             Abdulrhman
           </motion.h1>
@@ -586,13 +591,13 @@ function V3Hero({ p }: { p: V3Palette }) {
             }}
             style={{
               fontFamily: "var(--v3-sg)",
-              fontSize: "clamp(40px,5.5vw,80px)",
+              fontSize: isMobile ? "clamp(36px,10vw,52px)" : "clamp(40px,5.5vw,80px)",
               fontWeight: 700,
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
               color: "transparent",
               WebkitTextStroke: `2px ${p.pri}`,
-              marginBottom: "2rem",
+              marginBottom: isMobile ? "1rem" : "2rem",
             }}>
             El-Daly
           </motion.h1>
@@ -602,11 +607,11 @@ function V3Hero({ p }: { p: V3Palette }) {
             transition={{ delay: 0.65, duration: 0.6 }}
             style={{
               fontFamily: "var(--v3-sg)",
-              fontSize: "1rem",
+              fontSize: isMobile ? "0.85rem" : "1rem",
               lineHeight: 1.75,
               color: p.muted,
               maxWidth: "440px",
-              marginBottom: "2.5rem",
+              marginBottom: isMobile ? "1.5rem" : "2.5rem",
             }}>
             5+ years crafting high-performance web applications — from
             pixel-perfect frontends to scalable Spring Boot & NestJS backends. I
@@ -620,7 +625,7 @@ function V3Hero({ p }: { p: V3Palette }) {
               display: "flex",
               gap: "1rem",
               flexWrap: "wrap",
-              marginBottom: "2.5rem",
+              marginBottom: isMobile ? "1.25rem" : "2.5rem",
             }}>
             <a
               href="#v3-projects"
@@ -703,17 +708,26 @@ function V3Hero({ p }: { p: V3Palette }) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
           style={{
+            order: isMobile ? 1 : undefined,
             position: "relative",
+            height: isMobile ? "55vw" : undefined,
+            minHeight: isMobile ? "260px" : undefined,
+            maxHeight: isMobile ? "380px" : undefined,
+            overflow: isMobile ? "hidden" : undefined,
             display: "flex",
             justifyContent: "center",
+            marginTop: isMobile ? "4rem" : undefined,
           }}>
           <motion.div
             style={{
               position: "relative",
               perspective: "1000px",
-              width: isMobile ? "clamp(180px,55vw,260px)" : "clamp(280px,30vw,400px)",
+              width: isMobile ? "100%" : "clamp(280px,30vw,400px)",
+              height: isMobile ? "100%" : undefined,
+              display: isMobile ? "flex" : undefined,
+              justifyContent: isMobile ? "center" : undefined,
             }}
-            animate={{ y: [0, -12, 0] }}
+            animate={isMobile ? {} : { y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             onMouseMove={(e) => {
               const r = e.currentTarget.getBoundingClientRect();
@@ -724,9 +738,9 @@ function V3Hero({ p }: { p: V3Palette }) {
             }}
             onMouseLeave={() => setTilt({ x: 0, y: 0 })}>
             <motion.div
-              animate={{ rotateX: tilt.x, rotateY: tilt.y }}
+              animate={isMobile ? {} : { rotateX: tilt.x, rotateY: tilt.y }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              style={{ transformStyle: "preserve-3d", position: "relative" }}>
+              style={{ transformStyle: "preserve-3d", position: "relative", height: isMobile ? "100%" : undefined }}>
               <div
                 style={{
                   position: "absolute",
@@ -743,12 +757,14 @@ function V3Hero({ p }: { p: V3Palette }) {
                 width={400}
                 height={480}
                 style={{
-                  width: "100%",
-                  height: "auto",
+                  width: isMobile ? "auto" : "100%",
+                  height: isMobile ? "100%" : "auto",
+                  maxWidth: isMobile ? "340px" : undefined,
                   objectFit: "contain",
+                  objectPosition: "center bottom",
                   position: "relative",
                   zIndex: 1,
-                  filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.6))",
+                  filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))",
                 }}
                 priority
               />
@@ -809,6 +825,18 @@ function V3Hero({ p }: { p: V3Palette }) {
             </motion.div>
           ))}
         </motion.div>
+        {isMobile && (
+          <div style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "40px",
+            zIndex: 2,
+            background: `linear-gradient(to top, ${p.bg}, transparent)`,
+            pointerEvents: "none",
+          }} />
+        )}
       </div>
 
       <motion.div
@@ -2151,6 +2179,7 @@ function ProjectSlide({
   accents: string[];
 }) {
   const c = accents[idx % accents.length];
+  const { isMobile } = useResponsive();
 
   // Project 0 is always the base (fully visible).
   // Project i (i ≥ 1) wipes in from right as scroll crosses (i-1)/total → i/total.
@@ -2165,76 +2194,113 @@ function ProjectSlide({
 
   return (
     <motion.div
-      style={{ position: "absolute", inset: 0, clipPath, zIndex: idx, background: p.bg }}>
+      style={{
+        position: "absolute", inset: 0, clipPath, zIndex: idx, background: p.bg,
+        display: isMobile ? "flex" : undefined,
+        flexDirection: isMobile ? "column" : undefined,
+        overflow: isMobile ? "hidden" : undefined,
+      }}>
 
-      {/* Full-screen background */}
-      {"image" in proj && proj.image ? (
+      {isMobile ? (
+        /* ── MOBILE: full-width image in flow, text panel below ── */
         // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={proj.image}
-          alt={proj.title}
-          style={{
-            position: "absolute",
-            top: "64px",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: "100%",
-            height: "calc(100% - 64px)",
-            objectFit: "cover",
-            objectPosition: "center top",
-            opacity: 0.9,
-            filter: "saturate(0.95) contrast(1.04)",
-          }}
-        />
-      ) : (
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg,${p.s1},${p.s2})` }}>
+        "image" in proj && proj.image ? (
+          <img
+            src={proj.image}
+            alt={proj.title}
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              flexShrink: 0,
+              marginTop: "3.5rem",
+              filter: "saturate(0.95) contrast(1.04)",
+            }}
+          />
+        ) : (
           <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: `linear-gradient(${c}10 1px,transparent 1px),linear-gradient(90deg,${c}10 1px,transparent 1px)`,
-            backgroundSize: "56px 56px",
-          }} />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: `radial-gradient(ellipse at 70% 50%,${c}22 0%,transparent 55%)`,
-          }} />
-          <div style={{
-            position: "absolute", bottom: "1.5rem", right: "3rem",
-            fontFamily: "var(--v3-jb)", fontSize: "clamp(120px,18vw,240px)",
-            fontWeight: 700, color: `${c}08`, lineHeight: 1,
-            userSelect: "none", letterSpacing: "-0.04em",
+            height: "220px", flexShrink: 0, marginTop: "3.5rem",
+            background: `linear-gradient(135deg,${p.s1},${p.s2})`,
+            position: "relative",
           }}>
-            {String(idx + 1).padStart(2, "0")}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: `radial-gradient(ellipse at 70% 50%,${c}22 0%,transparent 55%)`,
+            }} />
           </div>
-          <div style={{
-            position: "absolute", top: "50%", right: "22%",
-            transform: "translateY(-50%)", width: 260, height: 260,
-            borderRadius: "50%",
-            background: `radial-gradient(circle,${c}28 0%,transparent 70%)`,
-            boxShadow: `0 0 120px ${c}30,0 0 240px ${c}12`,
-            pointerEvents: "none",
-          }} />
-        </div>
+        )
+      ) : (
+        /* ── DESKTOP: full-screen absolute-positioned background ── */
+        "image" in proj && proj.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={proj.image}
+            alt={proj.title}
+            style={{
+              position: "absolute",
+              top: "64px", left: 0, right: 0, bottom: 0,
+              width: "100%", height: "calc(100% - 64px)",
+              objectFit: "cover", objectPosition: "center top",
+              opacity: 0.9,
+              filter: "saturate(0.95) contrast(1.04)",
+            }}
+          />
+        ) : (
+          <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg,${p.s1},${p.s2})` }}>
+            <div style={{
+              position: "absolute", inset: 0,
+              backgroundImage: `linear-gradient(${c}10 1px,transparent 1px),linear-gradient(90deg,${c}10 1px,transparent 1px)`,
+              backgroundSize: "56px 56px",
+            }} />
+            <div style={{
+              position: "absolute", inset: 0,
+              background: `radial-gradient(ellipse at 70% 50%,${c}22 0%,transparent 55%)`,
+            }} />
+            <div style={{
+              position: "absolute", bottom: "1.5rem", right: "3rem",
+              fontFamily: "var(--v3-jb)", fontSize: "clamp(120px,18vw,240px)",
+              fontWeight: 700, color: `${c}08`, lineHeight: 1,
+              userSelect: "none", letterSpacing: "-0.04em",
+            }}>
+              {String(idx + 1).padStart(2, "0")}
+            </div>
+            <div style={{
+              position: "absolute", top: "50%", right: "22%",
+              transform: "translateY(-50%)", width: 260, height: 260,
+              borderRadius: "50%",
+              background: `radial-gradient(circle,${c}28 0%,transparent 70%)`,
+              boxShadow: `0 0 120px ${c}30,0 0 240px ${c}12`,
+              pointerEvents: "none",
+            }} />
+          </div>
+        )
       )}
 
-      {/* Left gradient for text legibility */}
-      <div style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: `linear-gradient(to right,${p.bg} 0%,${p.bg}BB 22%,${p.bg}55 40%,transparent 60%)`,
-      }} />
-      {/* Bottom vignette */}
-      <div style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: `linear-gradient(to bottom,transparent 80%,${p.bg}88 100%)`,
-      }} />
+      {/* Desktop: gradient overlays */}
+      {!isMobile && <>
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: `linear-gradient(to right,${p.bg} 0%,${p.bg}BB 22%,${p.bg}55 40%,transparent 60%)`,
+        }} />
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: `linear-gradient(to bottom,transparent 80%,${p.bg}88 100%)`,
+        }} />
+      </>}
 
-      {/* Text — left side */}
+      {/* Text panel */}
       <div style={{
-        position: "absolute", inset: 0, zIndex: 2,
-        display: "flex", flexDirection: "column", justifyContent: "center",
-        padding: "5.5rem 3rem 4rem 3.5rem", maxWidth: "600px",
+        position: isMobile ? "relative" : "absolute",
+        inset: isMobile ? undefined : 0,
+        zIndex: 2,
+        flex: isMobile ? 1 : undefined,
+        background: isMobile ? p.bg : undefined,
+        display: "flex", flexDirection: "column",
+        justifyContent: isMobile ? "flex-start" : "center",
+        padding: isMobile ? "1.2rem 1.5rem 2rem" : "5.5rem 3rem 4rem 3.5rem",
+        maxWidth: isMobile ? undefined : "600px",
       }}>
-        <div style={{ marginBottom: "1.4rem" }}>
+        <div style={{ marginBottom: isMobile ? "0.65rem" : "1.4rem" }}>
           <span style={{
             fontFamily: "var(--v3-jb)", fontSize: "0.57rem",
             letterSpacing: "0.22em", textTransform: "uppercase",
@@ -2246,22 +2312,30 @@ function ProjectSlide({
         </div>
 
         <h2 style={{
-          fontFamily: "var(--v3-sg)", fontSize: "clamp(36px,5.5vw,80px)",
+          fontFamily: "var(--v3-sg)",
+          fontSize: isMobile ? "clamp(38px,11vw,58px)" : "clamp(36px,5.5vw,80px)",
           fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.03,
-          marginBottom: "1.4rem", color: p.fg,
+          marginBottom: isMobile ? "0.65rem" : "1.4rem", color: p.fg,
         }}>
           {proj.title}<span style={{ color: c }}>.</span>
         </h2>
 
         <p style={{
-          fontFamily: "var(--v3-sg)", fontSize: "0.9rem",
-          lineHeight: 1.82, color: `${p.fg}99`,
-          maxWidth: "440px", marginBottom: "2rem",
+          fontFamily: "var(--v3-sg)",
+          fontSize: isMobile ? "1rem" : "0.9rem",
+          lineHeight: isMobile ? 1.6 : 1.82,
+          color: `${p.fg}bb`,
+          maxWidth: "440px",
+          marginBottom: isMobile ? "0.9rem" : "2rem",
+          display: isMobile ? "-webkit-box" : undefined,
+          WebkitLineClamp: isMobile ? 3 : undefined,
+          WebkitBoxOrient: isMobile ? "vertical" as const : undefined,
+          overflow: isMobile ? "hidden" : undefined,
         }}>
           {proj.description}
         </p>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem", marginBottom: "2.8rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: isMobile ? "0.9rem" : "2.8rem" }}>
           {proj.tech.map((t) => (
             <span key={t} style={{
               fontFamily: "var(--v3-jb)", fontSize: "0.57rem",
