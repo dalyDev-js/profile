@@ -13,6 +13,17 @@ import {
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
 
+function useResponsive() {
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const update = () => setWidth(window.innerWidth);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return { isMobile: width > 0 && width < 768, isTablet: width >= 768 && width < 1024 };
+}
+
 const sg = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
@@ -370,6 +381,7 @@ const PROJECTS = [
 //  NAV
 // ══════════════════════════════════════════════════════════════════════════════
 function V3Nav({ p }: { p: V3Palette }) {
+  const { isMobile } = useResponsive();
   const links = [
     ["About", "#v3-about"],
     ["Skills", "#v3-skills"],
@@ -388,7 +400,7 @@ function V3Nav({ p }: { p: V3Palette }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "1.1rem 3rem",
+        padding: isMobile ? "1rem 1.5rem" : "1.1rem 3rem",
         background: `${p.bg}E8`,
         backdropFilter: "blur(20px)",
         borderBottom: `1px solid ${p.br}`,
@@ -405,26 +417,47 @@ function V3Nav({ p }: { p: V3Palette }) {
         }}>
         AD<span style={{ color: p.muted }}>.</span>
       </a>
-      <nav style={{ display: "flex", gap: "2rem" }}>
-        {links.map(([l, h]) => (
-          <a
-            key={l}
-            href={h}
-            style={{
-              fontSize: "0.72rem",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: p.muted,
-              textDecoration: "none",
-              transition: "color .2s",
-              fontFamily: "var(--v3-jb)",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = p.fg)}
-            onMouseLeave={(e) => (e.currentTarget.style.color = p.muted)}>
-            {l}
-          </a>
-        ))}
-      </nav>
+      {!isMobile && (
+        <nav style={{ display: "flex", gap: "2rem" }}>
+          {links.map(([l, h]) => (
+            <a
+              key={l}
+              href={h}
+              style={{
+                fontSize: "0.72rem",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: p.muted,
+                textDecoration: "none",
+                transition: "color .2s",
+                fontFamily: "var(--v3-jb)",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = p.fg)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = p.muted)}>
+              {l}
+            </a>
+          ))}
+        </nav>
+      )}
+      {isMobile && (
+        <nav style={{ display: "flex", gap: "1.2rem" }}>
+          {links.slice(0, 3).map(([l, h]) => (
+            <a
+              key={l}
+              href={h}
+              style={{
+                fontSize: "0.6rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: p.muted,
+                textDecoration: "none",
+                fontFamily: "var(--v3-jb)",
+              }}>
+              {l}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
@@ -442,6 +475,7 @@ const BADGES = [
 ];
 
 function V3Hero({ p }: { p: V3Palette }) {
+  const { isMobile } = useResponsive();
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const bColors = [
     p.pri,
@@ -458,7 +492,7 @@ function V3Hero({ p }: { p: V3Palette }) {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        padding: "8rem 3rem 5rem",
+        padding: isMobile ? "6rem 1.5rem 4rem" : "8rem 3rem 5rem",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -502,8 +536,8 @@ function V3Hero({ p }: { p: V3Palette }) {
           position: "relative",
           zIndex: 1,
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "4rem",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+          gap: isMobile ? "2rem" : "4rem",
           alignItems: "center",
           maxWidth: "1200px",
           margin: "0 auto",
@@ -677,7 +711,7 @@ function V3Hero({ p }: { p: V3Palette }) {
             style={{
               position: "relative",
               perspective: "1000px",
-              width: "clamp(280px,30vw,400px)",
+              width: isMobile ? "clamp(180px,55vw,260px)" : "clamp(280px,30vw,400px)",
             }}
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -720,7 +754,7 @@ function V3Hero({ p }: { p: V3Palette }) {
               />
             </motion.div>
           </motion.div>
-          {BADGES.map((b, i) => (
+          {!isMobile && BADGES.map((b, i) => (
             <motion.div
               key={b.text}
               initial={{ opacity: 0, scale: 0.7 }}
@@ -819,6 +853,7 @@ function V3Hero({ p }: { p: V3Palette }) {
 //  ABOUT
 // ══════════════════════════════════════════════════════════════════════════════
 function V3About({ p }: { p: V3Palette }) {
+  const { isMobile } = useResponsive();
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const statColors = [p.pri, p.cats.backend.c, p.cats.design.c, p.cats.db.c];
@@ -829,7 +864,7 @@ function V3About({ p }: { p: V3Palette }) {
       id="v3-about"
       style={{
         background: p.s1,
-        padding: "7rem 3rem",
+        padding: isMobile ? "4rem 1.5rem" : "7rem 3rem",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -877,9 +912,9 @@ function V3About({ p }: { p: V3Palette }) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4,1fr)",
+              gridTemplateColumns: isMobile ? "repeat(2,1fr)" : "repeat(4,1fr)",
               gap: "1.2rem",
-              marginBottom: "5rem",
+              marginBottom: isMobile ? "3rem" : "5rem",
             }}>
             {STATS.map((s, i) => (
               <motion.div
@@ -943,8 +978,8 @@ function V3About({ p }: { p: V3Palette }) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "4rem",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+              gap: isMobile ? "2rem" : "4rem",
               alignItems: "stretch",
             }}>
             {/* Left — fills full height, space-between pushes leadership card to bottom */}
@@ -987,7 +1022,7 @@ function V3About({ p }: { p: V3Palette }) {
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
+                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                     gap: "0.75rem",
                     fontSize: "0.8rem",
                     color: p.muted,
@@ -1135,7 +1170,7 @@ function V3About({ p }: { p: V3Palette }) {
                 style={{
                   position: "relative",
                   width: "100%",
-                  maxWidth: "420px",
+                  maxWidth: isMobile ? "300px" : "420px",
                   display: "flex",
                   flexDirection: "column",
                 }}>
@@ -1215,6 +1250,7 @@ const LEAF_NODES = FRUITS.map((f) => ({
 }));
 
 function V3SkillTree({ p }: { p: V3Palette }) {
+  const { isMobile } = useResponsive();
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: false, margin: "-80px" });
 
@@ -1240,7 +1276,7 @@ function V3SkillTree({ p }: { p: V3Palette }) {
 
       <div
         style={{
-          padding: "0 3rem",
+          padding: isMobile ? "0 1.5rem" : "0 3rem",
           maxWidth: "1200px",
           margin: "0 auto 2rem",
         }}>
@@ -1300,17 +1336,18 @@ function V3SkillTree({ p }: { p: V3Palette }) {
       <div
         style={{
           display: "flex",
+          flexDirection: isMobile ? "column" : "row",
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "0 2rem",
+          padding: isMobile ? "0 1.5rem" : "0 2rem",
           gap: "2rem",
-          alignItems: "center",
+          alignItems: isMobile ? "stretch" : "center",
         }}>
         {/* Natural tree image with skill-badge leaves overlaid */}
         <div
           style={{
             flex: "0 0 auto",
-            width: "min(620px,66%)",
+            width: isMobile ? "100%" : "min(620px,66%)",
             position: "relative",
           }}>
           {/* Ambient glow behind tree */}
@@ -1576,8 +1613,8 @@ function JourneyCard({ exp, i, total, active, p }: JourneyCardProps) {
           style={{
             background: p.s2,
             border: `1px solid ${exp.leadership ? `${p.pri}45` : p.br}`,
-            borderRadius: "20px",
-            padding: "2.2rem",
+            borderRadius: "16px",
+            padding: "1.4rem",
             position: "relative",
             overflow: "hidden",
             boxShadow: `0 28px 70px rgba(0,0,0,0.5),0 0 0 1px ${p.pri}10,inset 0 1px 0 rgba(255,255,255,0.04)`,
@@ -1756,6 +1793,7 @@ function JourneyCard({ exp, i, total, active, p }: JourneyCardProps) {
 }
 
 function V3Experience({ p }: { p: V3Palette }) {
+  const { isMobile } = useResponsive();
   const outerRef = useRef<HTMLDivElement>(null);
   const inView = useInView(outerRef, { once: true, margin: "-80px" });
   const { scrollYProgress } = useScroll({
@@ -1821,7 +1859,7 @@ function V3Experience({ p }: { p: V3Palette }) {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ padding: "2.5rem 3rem 0.5rem", flexShrink: 0 }}>
+          style={{ padding: isMobile ? "1.5rem 1.5rem 0.5rem" : "2.5rem 3rem 0.5rem", flexShrink: 0 }}>
           <div
             style={{
               display: "flex",
@@ -1880,11 +1918,11 @@ function V3Experience({ p }: { p: V3Palette }) {
             flex: 1,
             display: "flex",
             overflow: "hidden",
-            padding: "0.5rem 1.5rem 0.5rem 2rem",
-            gap: "1.5rem",
+            padding: isMobile ? "0.5rem 1rem" : "0.5rem 1.5rem 0.5rem 2rem",
+            gap: "1rem",
           }}>
           {/* Timeline SVG column */}
-          <div style={{ width: "180px", flexShrink: 0, position: "relative" }}>
+          {!isMobile && <div style={{ width: "180px", flexShrink: 0, position: "relative" }}>
             <svg
               viewBox="0 0 160 600"
               style={{ width: "100%", height: "100%", display: "block" }}
@@ -2040,7 +2078,7 @@ function V3Experience({ p }: { p: V3Palette }) {
                 opacity="0.85"
               />
             </svg>
-          </div>
+          </div>}
 
           {/* Solitaire card stack — active card at bottom, past cards peek behind */}
           <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
@@ -3241,6 +3279,7 @@ function V3FistBumpExact({ p }: { p: V3Palette }) {
 }
 
 function V3Contact({ p }: { p: V3Palette }) {
+  const { isMobile } = useResponsive();
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const formRef = useRef<HTMLFormElement>(null);
@@ -3251,7 +3290,7 @@ function V3Contact({ p }: { p: V3Palette }) {
       id="v3-contact"
       style={{
         background: p.s1,
-        padding: "7rem 3rem",
+        padding: isMobile ? "4rem 1.5rem" : "7rem 3rem",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -3320,8 +3359,8 @@ function V3Contact({ p }: { p: V3Palette }) {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1.2fr",
-            gap: "5rem",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1.2fr",
+            gap: isMobile ? "2.5rem" : "5rem",
           }}>
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -3553,6 +3592,7 @@ export default function V3Page({
   palette?: V3Palette;
 }) {
   const p = palette;
+  const { isMobile } = useResponsive();
   return (
     <div
       className={`${sg.variable} ${jb.variable}`}
@@ -3581,11 +3621,14 @@ export default function V3Page({
       <V3Contact p={p} />
       <footer
         style={{
-          padding: "2rem 3rem",
+          padding: isMobile ? "1.5rem" : "2rem 3rem",
           borderTop: `1px solid ${p.br}`,
           display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          gap: isMobile ? "0.4rem" : undefined,
           justifyContent: "space-between",
           alignItems: "center",
+          textAlign: isMobile ? "center" : undefined,
         }}>
         <span
           style={{ fontFamily: "var(--v3-sg)", fontWeight: 600, color: p.pri }}>
