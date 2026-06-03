@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
+import AnimatedShaderBackground from "@/components/ui/AnimatedShaderBackground";
 
 function useResponsive() {
   const [width, setWidth] = useState(0);
@@ -476,367 +477,270 @@ const BADGES = [
 
 function V3Hero({ p }: { p: V3Palette }) {
   const { isMobile } = useResponsive();
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const bColors = [
-    p.pri,
-    p.fg,
-    p.cats.tools.c,
-    p.cats.backend.c,
-    p.cats.db.c,
-    p.cats.design.c,
+
+  const techStack = [
+    { label: "React.js", color: p.cats.frontend.c },
+    { label: "Next.js", color: p.cats.frontend.c },
+    { label: "TypeScript", color: p.cats.frontend.c },
+    { label: "Spring Boot", color: p.cats.backend.c },
+    { label: "NestJS", color: p.cats.backend.c },
+    { label: "PostgreSQL", color: p.cats.db.c },
   ];
+
   return (
     <section
       id="v3-home"
       style={{
         minHeight: "100vh",
         display: "flex",
-        flexDirection: isMobile ? "column" : undefined,
-        alignItems: isMobile ? "stretch" : "center",
-        padding: isMobile ? "0" : "8rem 3rem 5rem",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: isMobile ? "7rem 1.5rem 5rem" : "8rem 3rem 5rem",
         position: "relative",
         overflow: "hidden",
+        background: p.bg,
       }}>
-      <div
-        style={{
-          position: "absolute",
-          top: "10%",
-          left: "5%",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background: `radial-gradient(circle,rgba(${p.priRgb},0.07) 0%,transparent 70%)`,
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          bottom: "5%",
-          right: "10%",
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          background: `radial-gradient(circle,rgba(${p.secRgb},0.06) 0%,transparent 70%)`,
-          pointerEvents: "none",
-        }}
-      />
+
+      {/* Shader aurora — base layer */}
+      <AnimatedShaderBackground opacity={0.6} />
+
+      {/* Dark vignette so text stays legible over aurora */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `linear-gradient(${p.br}55 1px,transparent 1px),linear-gradient(90deg,${p.br}55 1px,transparent 1px)`,
-          backgroundSize: "48px 48px",
-          opacity: 0.4,
+          background: `radial-gradient(ellipse at center, ${p.bg}55 0%, ${p.bg}CC 55%, ${p.bg}F5 100%)`,
           pointerEvents: "none",
+          zIndex: 1,
         }}
       />
 
+      {/* Subtle grid overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `linear-gradient(${p.br}33 1px,transparent 1px),linear-gradient(90deg,${p.br}33 1px,transparent 1px)`,
+          backgroundSize: "48px 48px",
+          opacity: 0.5,
+          pointerEvents: "none",
+          zIndex: 2,
+        }}
+      />
+
+      {/* Content */}
       <div
         style={{
           position: "relative",
-          zIndex: 1,
-          display: isMobile ? "contents" : "grid",
-          gridTemplateColumns: isMobile ? undefined : "1fr 1fr",
-          gap: isMobile ? undefined : "4rem",
-          alignItems: isMobile ? undefined : "center",
-          maxWidth: isMobile ? undefined : "1200px",
-          margin: isMobile ? undefined : "0 auto",
+          zIndex: 3,
+          maxWidth: "860px",
           width: "100%",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}>
-        <div style={isMobile ? {
-          order: 2,
-          padding: "0.5rem 1.5rem 2.5rem",
-          zIndex: 1,
-        } : undefined}>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            style={{
-              fontFamily: "var(--v3-jb)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              color: p.pri,
-              marginBottom: isMobile ? "0.75rem" : "1.5rem",
-            }}>
-            Senior Frontend Developer · Full-Stack Engineer
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.35,
-              duration: 0.9,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            style={{
-              fontFamily: "var(--v3-sg)",
-              fontSize: isMobile ? "clamp(36px,10vw,52px)" : "clamp(40px,5.5vw,80px)",
-              fontWeight: 700,
-              lineHeight: 1.05,
-              letterSpacing: "-0.03em",
-              marginBottom: "0.3rem",
-            }}>
-            Abdulrhman
-          </motion.h1>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.45,
-              duration: 0.9,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            style={{
-              fontFamily: "var(--v3-sg)",
-              fontSize: isMobile ? "clamp(36px,10vw,52px)" : "clamp(40px,5.5vw,80px)",
-              fontWeight: 700,
-              lineHeight: 1.05,
-              letterSpacing: "-0.03em",
-              color: "transparent",
-              WebkitTextStroke: `2px ${p.pri}`,
-              marginBottom: isMobile ? "1rem" : "2rem",
-            }}>
-            El-Daly
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.65, duration: 0.6 }}
-            style={{
-              fontFamily: "var(--v3-sg)",
-              fontSize: isMobile ? "0.85rem" : "1rem",
-              lineHeight: 1.75,
-              color: p.muted,
-              maxWidth: "440px",
-              marginBottom: isMobile ? "1.5rem" : "2.5rem",
-            }}>
-            5+ years crafting high-performance web applications — from
-            pixel-perfect frontends to scalable Spring Boot & NestJS backends. I
-            mentor teams, lead design systems, and ship products that matter.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.5 }}
-            style={{
-              display: "flex",
-              gap: "1rem",
-              flexWrap: "wrap",
-              marginBottom: isMobile ? "1.25rem" : "2.5rem",
-            }}>
-            <a
-              href="#v3-projects"
-              style={{
-                padding: "0.85rem 2.2rem",
-                background: p.pri,
-                color: p.fg,
-                textDecoration: "none",
-                fontSize: "0.72rem",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                fontFamily: "var(--v3-jb)",
-                borderRadius: "4px",
-                fontWeight: 500,
-                transition: "opacity .2s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
-              View Projects
-            </a>
-            <a
-              href="#v3-contact"
-              style={{
-                padding: "0.85rem 2.2rem",
-                background: "transparent",
-                border: `1px solid ${p.br}`,
-                color: p.fg,
-                textDecoration: "none",
-                fontSize: "0.72rem",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                fontFamily: "var(--v3-jb)",
-                borderRadius: "4px",
-                transition: "border-color .2s,color .2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = p.pri;
-                e.currentTarget.style.color = p.pri;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = p.br;
-                e.currentTarget.style.color = p.fg;
-              }}>
-              Get in Touch
-            </a>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.0 }}
-            style={{ display: "flex", gap: "1.5rem" }}>
-            {[
-              ["GitHub", "https://github.com/dalyDev-js"],
-              ["LinkedIn", "https://linkedin.com/in/abdulrhman-eldaly"],
-            ].map(([l, h]) => (
-              <a
-                key={l}
-                href={h}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.15em",
-                  textTransform: "uppercase",
-                  color: p.muted,
-                  textDecoration: "none",
-                  fontFamily: "var(--v3-jb)",
-                  transition: "color .2s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = p.pri)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = p.muted)}>
-                {l} ↗
-              </a>
-            ))}
-          </motion.div>
-        </div>
 
+        {/* Label with side lines */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
           style={{
-            order: isMobile ? 1 : undefined,
-            position: "relative",
-            height: isMobile ? "55vw" : undefined,
-            minHeight: isMobile ? "260px" : undefined,
-            maxHeight: isMobile ? "380px" : undefined,
-            overflow: isMobile ? "hidden" : undefined,
             display: "flex",
-            justifyContent: "center",
-            marginTop: isMobile ? "4rem" : undefined,
+            alignItems: "center",
+            gap: "1rem",
+            marginBottom: isMobile ? "1.5rem" : "2rem",
           }}>
-          <motion.div
+          <div style={{ flex: 1, height: "1px", background: `linear-gradient(to right, transparent, ${p.pri}50)` }} />
+          <span style={{
+            fontFamily: "var(--v3-jb)",
+            fontSize: "0.6rem",
+            letterSpacing: "0.3em",
+            textTransform: "uppercase",
+            color: p.pri,
+          }}>
+            Senior Frontend Developer · Full-Stack Engineer
+          </span>
+          <div style={{ flex: 1, height: "1px", background: `linear-gradient(to left, transparent, ${p.pri}50)` }} />
+        </motion.div>
+
+        {/* Name */}
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            fontFamily: "var(--v3-sg)",
+            fontSize: isMobile ? "clamp(52px,14vw,72px)" : "clamp(64px,8vw,110px)",
+            fontWeight: 700,
+            lineHeight: 1.0,
+            letterSpacing: "-0.04em",
+            marginBottom: "0.1em",
+          }}>
+          Abdulrhman
+        </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.48, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            fontFamily: "var(--v3-sg)",
+            fontSize: isMobile ? "clamp(52px,14vw,72px)" : "clamp(64px,8vw,110px)",
+            fontWeight: 700,
+            lineHeight: 1.0,
+            letterSpacing: "-0.04em",
+            color: "transparent",
+            WebkitTextStroke: `2px ${p.pri}`,
+            marginBottom: isMobile ? "1.5rem" : "2.5rem",
+          }}>
+          El-Daly
+        </motion.h1>
+
+        {/* Bio */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.7 }}
+          style={{
+            fontFamily: "var(--v3-sg)",
+            fontSize: isMobile ? "0.88rem" : "1.05rem",
+            lineHeight: 1.8,
+            color: `${p.fg}AA`,
+            maxWidth: "560px",
+            marginBottom: isMobile ? "2rem" : "3rem",
+          }}>
+          5+ years crafting high-performance web applications — from
+          pixel-perfect frontends to scalable Spring Boot &amp; NestJS backends.
+          I mentor teams, lead design systems, and ship products that matter.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.88, duration: 0.5 }}
+          style={{
+            display: "flex",
+            gap: "1rem",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            marginBottom: isMobile ? "2rem" : "3rem",
+          }}>
+          <a
+            href="#v3-projects"
             style={{
-              position: "relative",
-              perspective: "1000px",
-              width: isMobile ? "100%" : "clamp(280px,30vw,400px)",
-              height: isMobile ? "100%" : undefined,
-              display: isMobile ? "flex" : undefined,
-              justifyContent: isMobile ? "center" : undefined,
+              padding: "0.9rem 2.4rem",
+              background: p.pri,
+              color: p.bg,
+              textDecoration: "none",
+              fontSize: "0.72rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              fontFamily: "var(--v3-jb)",
+              borderRadius: "4px",
+              fontWeight: 700,
+              transition: "opacity .2s, box-shadow .2s",
+              boxShadow: `0 0 24px ${p.pri}40`,
             }}
-            animate={isMobile ? {} : { y: [0, -12, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            onMouseMove={(e) => {
-              const r = e.currentTarget.getBoundingClientRect();
-              setTilt({
-                x: ((e.clientY - r.top) / r.height - 0.5) * -10,
-                y: ((e.clientX - r.left) / r.width - 0.5) * 10,
-              });
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.opacity = "0.85";
+              (e.currentTarget as HTMLElement).style.boxShadow = `0 0 40px ${p.pri}70`;
             }}
-            onMouseLeave={() => setTilt({ x: 0, y: 0 })}>
-            <motion.div
-              animate={isMobile ? {} : { rotateX: tilt.x, rotateY: tilt.y }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              style={{ transformStyle: "preserve-3d", position: "relative", height: isMobile ? "100%" : undefined }}>
-              <div
-                style={{
-                  position: "absolute",
-                  inset: "-20px",
-                  borderRadius: "50%",
-                  background: `radial-gradient(circle,rgba(${p.priRgb},0.15) 0%,rgba(${p.secRgb},0.1) 50%,transparent 70%)`,
-                  filter: "blur(20px)",
-                  pointerEvents: "none",
-                }}
-              />
-              <Image
-                src="/v3-hero.png"
-                alt="Abdulrhman El-Daly"
-                width={400}
-                height={480}
-                style={{
-                  width: isMobile ? "auto" : "100%",
-                  height: isMobile ? "100%" : "auto",
-                  maxWidth: isMobile ? "340px" : undefined,
-                  objectFit: "contain",
-                  objectPosition: "center bottom",
-                  position: "relative",
-                  zIndex: 1,
-                  filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))",
-                }}
-                priority
-              />
-            </motion.div>
-          </motion.div>
-          {!isMobile && BADGES.map((b, i) => (
-            <motion.div
-              key={b.text}
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                y: [0, i % 2 === 0 ? -6 : 6, 0],
-              }}
-              transition={{
-                opacity: { delay: b.delay },
-                scale: { delay: b.delay },
-                y: {
-                  duration: 3 + i * 0.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.3,
-                },
-              }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.opacity = "1";
+              (e.currentTarget as HTMLElement).style.boxShadow = `0 0 24px ${p.pri}40`;
+            }}>
+            View Projects
+          </a>
+          <a
+            href="#v3-contact"
+            style={{
+              padding: "0.9rem 2.4rem",
+              background: `${p.s2}CC`,
+              border: `1px solid ${p.br}`,
+              color: p.fg,
+              textDecoration: "none",
+              fontSize: "0.72rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              fontFamily: "var(--v3-jb)",
+              borderRadius: "4px",
+              backdropFilter: "blur(12px)",
+              transition: "border-color .2s, color .2s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = p.pri;
+              (e.currentTarget as HTMLElement).style.color = p.pri;
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = p.br;
+              (e.currentTarget as HTMLElement).style.color = p.fg;
+            }}>
+            Get in Touch
+          </a>
+        </motion.div>
+
+        {/* Social links */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.05 }}
+          style={{ display: "flex", gap: "2rem", marginBottom: isMobile ? "2.5rem" : "3.5rem" }}>
+          {[
+            ["GitHub", "https://github.com/dalyDev-js"],
+            ["LinkedIn", "https://linkedin.com/in/abdulrhman-eldaly"],
+          ].map(([l, h]) => (
+            <a
+              key={l}
+              href={h}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                position: "absolute",
-                left: b.x,
-                top: b.y,
-                background: `${p.s2}CC`,
-                border: `1px solid ${bColors[i]}40`,
-                borderRadius: "8px",
-                padding: "6px 12px",
-                backdropFilter: "blur(10px)",
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-                boxShadow: `0 0 16px ${bColors[i]}20`,
-                whiteSpace: "nowrap",
-              }}>
-              <div
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: bColors[i],
-                  boxShadow: `0 0 6px ${bColors[i]}`,
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: "var(--v3-jb)",
-                  fontSize: "0.65rem",
-                  color: bColors[i],
-                  letterSpacing: "0.05em",
-                }}>
-                {b.text}
-              </span>
-            </motion.div>
+                fontSize: "0.65rem",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: p.muted,
+                textDecoration: "none",
+                fontFamily: "var(--v3-jb)",
+                transition: "color .2s",
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = p.pri)}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = p.muted)}>
+              {l} ↗
+            </a>
           ))}
         </motion.div>
-        {isMobile && (
-          <div style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "40px",
-            zIndex: 2,
-            background: `linear-gradient(to top, ${p.bg}, transparent)`,
-            pointerEvents: "none",
-          }} />
-        )}
+
+        {/* Tech stack pills */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.3, duration: 0.6 }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0.6rem",
+            justifyContent: "center",
+          }}>
+          {techStack.map(({ label, color }) => (
+            <span
+              key={label}
+              style={{
+                fontFamily: "var(--v3-jb)",
+                fontSize: "0.6rem",
+                letterSpacing: "0.08em",
+                color,
+                background: `${color}12`,
+                border: `1px solid ${color}30`,
+                borderRadius: "6px",
+                padding: "0.3rem 0.8rem",
+                backdropFilter: "blur(8px)",
+              }}>
+              {label}
+            </span>
+          ))}
+        </motion.div>
       </div>
 
       <motion.div
@@ -1057,7 +961,6 @@ function V3About({ p }: { p: V3Palette }) {
                     fontFamily: "var(--v3-jb)",
                   }}>
                   {[
-                    ["📍", "6th of October, Giza, Egypt"],
                     ["🎓", "El-Shrouk Academy · ITI"],
                     ["🌍", "Arabic · English"],
                     ["✉️", "abdulrhman.eldaly@gmail.com"],
