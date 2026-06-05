@@ -75,82 +75,7 @@ export const PALETTE_ORANGE: V3Palette = {
     tools: { c: "#22C55E", rgb: "34,197,94", label: "Tools" },
   },
 };
-export const PALETTE_BLUE: V3Palette = {
-  bg: "#070912",
-  s1: "#0A0F1E",
-  s2: "#0D1428",
-  br: "#1A2744",
-  pri: "#60A5FA",
-  priRgb: "96,165,250",
-  sec: "#06B6D4",
-  secRgb: "6,182,212",
-  fg: "#F1F5F9",
-  muted: "#4D6A8A",
-  cats: {
-    frontend: { c: "#60A5FA", rgb: "96,165,250", label: "Frontend" },
-    design: { c: "#818CF8", rgb: "129,140,248", label: "Design" },
-    backend: { c: "#06B6D4", rgb: "6,182,212", label: "Backend" },
-    db: { c: "#2DD4BF", rgb: "45,212,191", label: "Database" },
-    tools: { c: "#22C55E", rgb: "34,197,94", label: "Tools" },
-  },
-};
-export const PALETTE_VIOLET: V3Palette = {
-  bg: "#08060F",
-  s1: "#0E0A1C",
-  s2: "#120D24",
-  br: "#2A1A44",
-  pri: "#A78BFA",
-  priRgb: "167,139,250",
-  sec: "#EC4899",
-  secRgb: "236,72,153",
-  fg: "#F5F0FF",
-  muted: "#6B5A80",
-  cats: {
-    frontend: { c: "#A78BFA", rgb: "167,139,250", label: "Frontend" },
-    design: { c: "#EC4899", rgb: "236,72,153", label: "Design" },
-    backend: { c: "#818CF8", rgb: "129,140,248", label: "Backend" },
-    db: { c: "#C084FC", rgb: "192,132,252", label: "Database" },
-    tools: { c: "#2DD4BF", rgb: "45,212,191", label: "Tools" },
-  },
-};
-export const PALETTE_TEAL: V3Palette = {
-  bg: "#050E0C",
-  s1: "#091612",
-  s2: "#0C1D18",
-  br: "#153025",
-  pri: "#34D399",
-  priRgb: "52,211,153",
-  sec: "#06B6D4",
-  secRgb: "6,182,212",
-  fg: "#F0FDF8",
-  muted: "#4B7A68",
-  cats: {
-    frontend: { c: "#34D399", rgb: "52,211,153", label: "Frontend" },
-    design: { c: "#06B6D4", rgb: "6,182,212", label: "Design" },
-    backend: { c: "#22D3EE", rgb: "34,211,238", label: "Backend" },
-    db: { c: "#60A5FA", rgb: "96,165,250", label: "Database" },
-    tools: { c: "#A78BFA", rgb: "167,139,250", label: "Tools" },
-  },
-};
-export const PALETTE_WARM: V3Palette = {
-  bg: "#0A080C",
-  s1: "#120E18",
-  s2: "#181220",
-  br: "#2E2040",
-  pri: "#C9983A",
-  priRgb: "201,152,58",
-  sec: "#7C5BBF",
-  secRgb: "124,91,191",
-  fg: "#F5F0E8",
-  muted: "#6B5C4A",
-  cats: {
-    frontend: { c: "#C9983A", rgb: "201,152,58", label: "Frontend" },
-    design: { c: "#7C5BBF", rgb: "124,91,191", label: "Design" },
-    backend: { c: "#E07B39", rgb: "224,123,57", label: "Backend" },
-    db: { c: "#A08050", rgb: "160,128,80", label: "Database" },
-    tools: { c: "#9B6FC5", rgb: "155,111,197", label: "Tools" },
-  },
-};
+
 
 // ── Skills ────────────────────────────────────────────────────────────────────
 const SKILLS: { name: string; cat: Cat; prof: number }[] = [
@@ -1183,7 +1108,7 @@ const LEAF_NODES = FRUITS.map((f) => ({
 function V3SkillTree({ p }: { p: V3Palette }) {
   const { isMobile } = useResponsive();
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: false, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section
@@ -1773,6 +1698,7 @@ function V3Experience({ p }: { p: V3Palette }) {
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
+          contain: "layout style paint",
         }}>
         <div
           style={{
@@ -2111,6 +2037,7 @@ function ProjectSlide({
           <img
             src={proj.image}
             alt={proj.title}
+            loading="lazy"
             style={{
               width: "100%",
               height: "auto",
@@ -2139,6 +2066,7 @@ function ProjectSlide({
           <img
             src={proj.image}
             alt={proj.title}
+            loading="lazy"
             style={{
               position: "absolute",
               top: "64px", left: 0, right: 0, bottom: 0,
@@ -2285,7 +2213,7 @@ function V3Projects({ p }: { p: V3Palette }) {
 
   return (
     <div ref={outerRef} id="v3-projects" style={{ height: `${total * 40}vh`, position: "relative" }}>
-      <section style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", background: p.bg }}>
+      <section style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", background: p.bg, contain: "layout style paint" }}>
 
         {/* Top bar */}
         <div style={{
@@ -2483,372 +2411,10 @@ const BURST_VISIBLE_LINES = [
 const BURST_SPARK_PATH =
   "M29.96 9.81 30.42 8.25C31.24 5.52 29.93 2.61 27.35 1.4L15.26-4.22c-2.36-1.09-3.68-3.64-3.23-6.2l4.27-24.17c.51-2.87-1.21-5.66-4-6.49-2.79-.84-5.77.55-6.92 3.23l-9.71 22.54c-1.03 2.39-3.53 3.79-6.11 3.41l-13.19-1.94c-2.82-.42-5.52 1.3-6.34 4.03l-.46 1.56c-.82 2.73.49 5.64 3.08 6.85l12.08 5.62c2.36 1.09 3.68 3.64 3.23 6.2l-4.27 24.17c-.51 2.87 1.22 5.66 4 6.49 2.79.84 5.77-.55 6.92-3.23l9.71-22.54c1.03-2.39 3.53-3.79 6.11-3.41l13.19 1.94c2.82.42 5.52-1.3 6.34-4.03Z";
 
-const fn2 = (n: number) => Math.round(n * 100) / 100;
-const SPARKLE_LINES = Array.from({ length: 12 }, (_, i) => {
-  const angle = (i * 30 * Math.PI) / 180;
-  const r2 = i % 2 === 0 ? 76 : 54;
-  return {
-    x1: fn2(90 + Math.cos(angle) * 20),
-    y1: fn2(90 + Math.sin(angle) * 20),
-    x2: fn2(90 + Math.cos(angle) * r2),
-    y2: fn2(90 + Math.sin(angle) * r2),
-    isPri: i % 2 === 0,
-    sw: i % 2 === 0 ? "3.5" : "2.5",
-  };
-});
-const SPARKLE_DOTS = [0, 60, 120, 180, 240, 300].map((deg, i) => {
-  const rad = (deg * Math.PI) / 180;
-  return {
-    cx: fn2(90 + Math.cos(rad) * 64),
-    cy: fn2(90 + Math.sin(rad) * 64),
-    isPri: i % 2 === 0,
-  };
-});
-const SPARKLE_DIAMONDS = [30, 90, 150, 210, 270, 330].map((deg) => {
-  const rad = (deg * Math.PI) / 180;
-  const cx = fn2(90 + Math.cos(rad) * 80);
-  const cy = fn2(90 + Math.sin(rad) * 80);
-  return `M${cx},${fn2(cy - 6)} L${fn2(cx + 4)},${cy} L${cx},${fn2(cy + 6)} L${fn2(cx - 4)},${cy} Z`;
-});
-
-// ══════════════════════════════════════════════════════════════════════════════
-//  FIST BUMP — scroll-driven collaboration CTA
-// ══════════════════════════════════════════════════════════════════════════════
-function V3FistBump({ p }: { p: V3Palette }) {
-  const outerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: outerRef,
-    offset: ["start end", "start 0.15"],
-  });
-
-  const impactedRef = useRef(false);
-  // Per-layer X bounce — body, thumb/wrist, knuckle
-  const leftB1 = useMotionValue(0);
-  const leftB2 = useMotionValue(0);
-  const leftB3 = useMotionValue(0);
-  const rightB1 = useMotionValue(0);
-  const rightB2 = useMotionValue(0);
-  const rightB3 = useMotionValue(0);
-
-  const leftScrollX = useTransform(scrollYProgress, [0, 0.78], [-700, 0]);
-  const rightScrollX = useTransform(scrollYProgress, [0, 0.78], [700, 0]);
-  const leftX1 = useTransform(() => leftScrollX.get() + leftB1.get());
-  const leftX2 = useTransform(() => leftScrollX.get() + leftB2.get());
-  const leftX3 = useTransform(() => leftScrollX.get() + leftB3.get());
-  const rightX1 = useTransform(() => rightScrollX.get() + rightB1.get());
-  const rightX2 = useTransform(() => rightScrollX.get() + rightB2.get());
-  const rightX3 = useTransform(() => rightScrollX.get() + rightB3.get());
-
-  const sparkleOpacity = useTransform(scrollYProgress, [0.72, 0.92], [0, 1]);
-  const sparkleScale = useTransform(scrollYProgress, [0.72, 1.0], [0.2, 1.15]);
-  const bgTextOpacity = useTransform(scrollYProgress, [0.05, 0.5], [0, 0.09]);
-  const subtitleOpacity = useTransform(scrollYProgress, [0.68, 0.92], [0, 1]);
-  const subtitleY = useTransform(scrollYProgress, [0.68, 0.92], [24, 0]);
-
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (v >= 0.73 && !impactedRef.current) {
-      impactedRef.current = true;
-      // Body — anchors the shape, moderate recoil, fast settle
-      animate(leftB1, -38, { duration: 0.07 }).then(() =>
-        animate(leftB1, 0, { type: "spring", stiffness: 260, damping: 16 })
-      );
-      animate(rightB1, 38, { duration: 0.07 }).then(() =>
-        animate(rightB1, 0, { type: "spring", stiffness: 260, damping: 16 })
-      );
-      // Thumb/wrist — slightly more recoil, 3–4 oscillations
-      animate(leftB2, -52, { duration: 0.08 }).then(() =>
-        animate(leftB2, 0, { type: "spring", stiffness: 200, damping: 7 })
-      );
-      animate(rightB2, 52, { duration: 0.08 }).then(() =>
-        animate(rightB2, 0, { type: "spring", stiffness: 200, damping: 7 })
-      );
-      // Knuckle — most recoil, lowest damping = visible multi-oscillation jiggle
-      animate(leftB3, -66, { duration: 0.09 }).then(() =>
-        animate(leftB3, 0, { type: "spring", stiffness: 150, damping: 5 })
-      );
-      animate(rightB3, 66, { duration: 0.09 }).then(() =>
-        animate(rightB3, 0, { type: "spring", stiffness: 150, damping: 5 })
-      );
-    }
-    if (v < 0.5) impactedRef.current = false;
-  });
-
-  return (
-    <div ref={outerRef} style={{ height: "180vh", position: "relative" }}>
-      <section
-        style={{
-          position: "sticky",
-          top: 0,
-          height: "100vh",
-          background: p.bg,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-        }}>
-        {/* Subtle grid */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `linear-gradient(${p.br}22 1px,transparent 1px),linear-gradient(90deg,${p.br}22 1px,transparent 1px)`,
-            backgroundSize: "48px 48px",
-            opacity: 0.35,
-            pointerEvents: "none",
-          }}
-        />
-        {/* Ambient glows */}
-        <div
-          style={{
-            position: "absolute",
-            left: "15%",
-            top: "35%",
-            width: 340,
-            height: 340,
-            borderRadius: "50%",
-            background: `radial-gradient(circle,rgba(${p.priRgb},0.12) 0%,transparent 70%)`,
-            filter: "blur(48px)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            right: "15%",
-            top: "35%",
-            width: 340,
-            height: 340,
-            borderRadius: "50%",
-            background: `radial-gradient(circle,rgba(${p.secRgb},0.12) 0%,transparent 70%)`,
-            filter: "blur(48px)",
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* Giant watermark text behind fists */}
-        <motion.div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            x: "-50%",
-            y: "-60%",
-            opacity: bgTextOpacity,
-            whiteSpace: "nowrap",
-            textAlign: "center",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}>
-          <div
-            style={{
-              fontFamily: "var(--v3-sg)",
-              fontSize: "clamp(52px, 10vw, 124px)",
-              fontWeight: 900,
-              letterSpacing: "-0.04em",
-              color: p.fg,
-              lineHeight: 1.05,
-            }}>
-            LET&apos;S BUILD
-          </div>
-          <div
-            style={{
-              fontFamily: "var(--v3-sg)",
-              fontSize: "clamp(52px, 10vw, 124px)",
-              fontWeight: 900,
-              letterSpacing: "-0.04em",
-              color: p.pri,
-              lineHeight: 1.05,
-            }}>
-            TOGETHER
-          </div>
-        </motion.div>
-
-        {/* Fists + impact center */}
-        <div
-          style={{
-            position: "relative",
-            zIndex: 2,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
-          {/* LEFT FIST (purple layers — each moves independently) */}
-          <div
-            style={{
-              position: "relative",
-              width: 360,
-              height: 310,
-              transform: "rotate(-31deg)",
-              transformOrigin: "right center",
-            }}>
-            {/* Body */}
-            <motion.div style={{ x: leftX1, position: "absolute", top: 0, left: 0 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/fistbump/fist_img_6_parent1011.png"
-                alt=""
-                style={{ width: 360, height: "auto", display: "block" }}
-              />
-            </motion.div>
-            {/* Thumb/wrist */}
-            <motion.div style={{ x: leftX2, position: "absolute", top: 78, left: 82, zIndex: 2 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/fistbump/fist_img_11_parent1015.png"
-                alt=""
-                style={{ width: 238, height: "auto", display: "block" }}
-              />
-            </motion.div>
-            {/* Knuckle */}
-            <motion.div style={{ x: leftX3, position: "absolute", top: 57, left: 148, zIndex: 3 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/fistbump/fist_img_10_parent1013.png"
-                alt=""
-                style={{ width: 205, height: "auto", display: "block" }}
-              />
-            </motion.div>
-          </div>
-
-          {/* Impact sparkle at knuckle meeting point */}
-          <div
-            style={{
-              width: 0,
-              height: 0,
-              position: "relative",
-              overflow: "visible",
-            }}>
-            <motion.div
-              style={{
-                position: "absolute",
-                opacity: sparkleOpacity,
-                scale: sparkleScale,
-                width: 180,
-                height: 180,
-                top: "-90px",
-                left: "-90px",
-              }}>
-              <svg
-                viewBox="0 0 180 180"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                style={{ width: "100%", height: "100%" }}>
-                {SPARKLE_LINES.map((l, i) => (
-                  <line
-                    key={i}
-                    x1={l.x1}
-                    y1={l.y1}
-                    x2={l.x2}
-                    y2={l.y2}
-                    stroke={l.isPri ? p.pri : p.sec}
-                    strokeWidth={l.sw}
-                    strokeLinecap="round"
-                  />
-                ))}
-                <circle cx="90" cy="90" r="14" fill={p.pri} opacity="0.95" />
-                <circle cx="90" cy="90" r="7" fill="white" opacity="0.9" />
-                {SPARKLE_DOTS.map((d, i) => (
-                  <circle
-                    key={i}
-                    cx={d.cx}
-                    cy={d.cy}
-                    r="4.5"
-                    fill={d.isPri ? p.pri : p.sec}
-                    opacity="0.88"
-                  />
-                ))}
-                {SPARKLE_DIAMONDS.map((d, i) => (
-                  <path key={i} d={d} fill={p.pri} opacity="0.78" />
-                ))}
-              </svg>
-            </motion.div>
-          </div>
-
-          {/* RIGHT FIST (orange layers — each moves independently) */}
-          <div
-            style={{
-              position: "relative",
-              width: 360,
-              height: 310,
-              transform: "rotate(33deg)",
-              transformOrigin: "left center",
-            }}>
-            {/* Body */}
-            <motion.div style={{ x: rightX1, position: "absolute", top: 0, left: 0 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/fistbump/fist_img_7_parent1017.png"
-                alt=""
-                style={{ width: 360, height: "auto", display: "block" }}
-              />
-            </motion.div>
-            {/* Thumb/wrist */}
-            <motion.div style={{ x: rightX2, position: "absolute", top: 78, left: 22, zIndex: 2 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/fistbump/fist_img_9_parent1021.png"
-                alt=""
-                style={{ width: 238, height: "auto", display: "block" }}
-              />
-            </motion.div>
-            {/* Knuckle */}
-            <motion.div style={{ x: rightX3, position: "absolute", top: 57, left: 8, zIndex: 3 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/fistbump/fist_img_8_parent1019.png"
-                alt=""
-                style={{ width: 205, height: "auto", display: "block" }}
-              />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Subtitle beneath fists */}
-        <motion.div
-          style={{
-            opacity: subtitleOpacity,
-            y: subtitleY,
-            textAlign: "center",
-            position: "relative",
-            zIndex: 2,
-            marginTop: "2.5rem",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "0.6rem",
-          }}>
-          <p
-            style={{
-              fontFamily: "var(--v3-jb)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              color: p.pri,
-            }}>
-            Ready to build something great?
-          </p>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
-            <div
-              style={{
-                width: 1,
-                height: 40,
-                background: `linear-gradient(to bottom,${p.pri},transparent)`,
-              }}
-            />
-          </motion.div>
-        </motion.div>
-      </section>
-    </div>
-  );
-}
 
 // ══════════════════════════════════════════════════════════════════════════════
 //  CONTACT
 // ══════════════════════════════════════════════════════════════════════════════
-void V3FistBump;
 
 function FistLayerImage({
   layer,
@@ -3564,7 +3130,7 @@ function V3Contact({ p }: { p: V3Palette }) {
 //  ROOT
 // ══════════════════════════════════════════════════════════════════════════════
 export default function V3Page({
-  palette = PALETTE_WARM,
+  palette = PALETTE_ORANGE,
 }: {
   palette?: V3Palette;
 }) {
