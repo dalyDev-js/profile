@@ -105,7 +105,7 @@ export const projects: Project[] = [
     description:
       "Government electronic portal for Saudi chambers of commerce. Enables electronic applications, membership management, and certificate issuance.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Redux"],
-    color: "#f97316",
+    color: "#22D3EE",
     image: "/projects/chambers.png",
   },
   {
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     description:
       "Comprehensive workspace dashboard for a UAE government academy with talent profiles, job management, IDP, and scholarship services.",
     tech: ["Next.js", "Redux", "Material UI", "Data Visualization"],
-    color: "#eab308",
+    color: "#A78BFA",
     image: "/projects/dge.jpg",
   },
   {
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     description:
       "Official Saudi government platform for wildlife services including import/export permits and the Fitri platform.",
     tech: ["Next.js", "TypeScript", "Responsive Design", "SEO"],
-    color: "#f97316",
+    color: "#22D3EE",
     image: "/projects/wildlife.png",
   },
   {
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     description:
       "Housekeeper services platform offering various service packages, order management, and e-services with bilingual support.",
     tech: ["React.js", "Redux", "Responsive Design", "REST API"],
-    color: "#eab308",
+    color: "#A78BFA",
     image: "/projects/hemmah.png",
   },
   {
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     description:
       "Performance-optimized, SEO-friendly cultural and tourism website showcasing Saudi Arabia through its people's eyes.",
     tech: ["React.js", "SEO", "Performance", "Responsive Design"],
-    color: "#f97316",
+    color: "#22D3EE",
     image: "/projects/qomra.png",
   },
   {
@@ -145,7 +145,7 @@ export const projects: Project[] = [
     description:
       "B2B full-funnel marketing platform driving sustainable revenue growth with data-driven strategies and cross-browser compatibility.",
     tech: ["React.js", "CSS3", "Responsive Design", "Performance"],
-    color: "#eab308",
+    color: "#A78BFA",
     image: "/projects/cordital.png",
   },
 ];

@@ -61,18 +61,38 @@ export const PALETTE_ORANGE: V3Palette = {
   s1: "#0C1120",
   s2: "#0F1729",
   br: "#1E293B",
-  pri: "#F97316",
-  priRgb: "249,115,22",
-  sec: "#3B82F6",
-  secRgb: "59,130,246",
+  pri: "#22D3EE",
+  priRgb: "34,211,238",
+  sec: "#A78BFA",
+  secRgb: "167,139,250",
   fg: "#F1F5F9",
   muted: "#64748B",
   cats: {
-    frontend: { c: "#F97316", rgb: "249,115,22", label: "Frontend" },
-    design: { c: "#A855F7", rgb: "168,85,247", label: "Design" },
-    backend: { c: "#3B82F6", rgb: "59,130,246", label: "Backend" },
-    db: { c: "#06B6D4", rgb: "6,182,212", label: "Database" },
+    frontend: { c: "#22D3EE", rgb: "34,211,238", label: "Frontend" },
+    design: { c: "#A78BFA", rgb: "167,139,250", label: "Design" },
+    backend: { c: "#60A5FA", rgb: "96,165,250", label: "Backend" },
+    db: { c: "#34D399", rgb: "52,211,153", label: "Database" },
     tools: { c: "#22C55E", rgb: "34,197,94", label: "Tools" },
+  },
+};
+
+export const PALETTE_LIGHT: V3Palette = {
+  bg: "#F5F3EE",
+  s1: "#EDEAE3",
+  s2: "#E5E1D8",
+  br: "#D1CCBF",
+  pri: "#0891B2",
+  priRgb: "8,145,178",
+  sec: "#7C3AED",
+  secRgb: "124,58,237",
+  fg: "#1C1917",
+  muted: "#78716C",
+  cats: {
+    frontend: { c: "#0891B2", rgb: "8,145,178", label: "Frontend" },
+    design: { c: "#7C3AED", rgb: "124,58,237", label: "Design" },
+    backend: { c: "#2563EB", rgb: "37,99,235", label: "Backend" },
+    db: { c: "#059669", rgb: "5,150,105", label: "Database" },
+    tools: { c: "#16A34A", rgb: "22,163,74", label: "Tools" },
   },
 };
 
@@ -306,7 +326,64 @@ const PROJECTS = [
 // ══════════════════════════════════════════════════════════════════════════════
 //  NAV
 // ══════════════════════════════════════════════════════════════════════════════
-function V3Nav({ p }: { p: V3Palette }) {
+function ThemeToggle({ isDark, onToggle, p }: { isDark: boolean; onToggle: () => void; p: V3Palette }) {
+  return (
+    <motion.button
+      onClick={onToggle}
+      whileTap={{ scale: 0.88 }}
+      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      style={{
+        width: 36,
+        height: 36,
+        borderRadius: "50%",
+        border: `1px solid ${p.br}`,
+        background: `${p.s1}CC`,
+        backdropFilter: "blur(8px)",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: p.muted,
+        flexShrink: 0,
+        transition: "border-color .2s, color .2s, background .2s",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.color = p.pri;
+        (e.currentTarget as HTMLElement).style.borderColor = p.pri;
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.color = p.muted;
+        (e.currentTarget as HTMLElement).style.borderColor = p.br;
+      }}>
+      <motion.div
+        key={isDark ? "moon" : "sun"}
+        initial={{ rotate: -30, opacity: 0 }}
+        animate={{ rotate: 0, opacity: 1 }}
+        exit={{ rotate: 30, opacity: 0 }}
+        transition={{ duration: 0.25 }}>
+        {isDark ? (
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        ) : (
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <circle cx="12" cy="12" r="4" />
+            <line x1="12" y1="2" x2="12" y2="5" />
+            <line x1="12" y1="19" x2="12" y2="22" />
+            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+            <line x1="2" y1="12" x2="5" y2="12" />
+            <line x1="19" y1="12" x2="22" y2="12" />
+            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+          </svg>
+        )}
+      </motion.div>
+    </motion.button>
+  );
+}
+
+function V3Nav({ p, isDark, onToggle }: { p: V3Palette; isDark: boolean; onToggle: () => void }) {
   const { isMobile } = useResponsive();
   const links = [
     ["About", "#v3-about"],
@@ -330,6 +407,7 @@ function V3Nav({ p }: { p: V3Palette }) {
         background: `${p.bg}E8`,
         backdropFilter: "blur(20px)",
         borderBottom: `1px solid ${p.br}`,
+        transition: "background .4s, border-color .4s",
       }}>
       <a
         href="#v3-home"
@@ -384,6 +462,7 @@ function V3Nav({ p }: { p: V3Palette }) {
           ))}
         </nav>
       )}
+      <ThemeToggle isDark={isDark} onToggle={onToggle} p={p} />
     </header>
   );
 }
@@ -3163,7 +3242,8 @@ export default function V3Page({
 }: {
   palette?: V3Palette;
 }) {
-  const p = palette;
+  const [isDark, setIsDark] = useState(true);
+  const p = isDark ? PALETTE_ORANGE : PALETTE_LIGHT;
   const { isMobile } = useResponsive();
   return (
     <div
@@ -3173,6 +3253,7 @@ export default function V3Page({
         color: p.fg,
         fontFamily: "var(--v3-sg),system-ui,sans-serif",
         overflowX: "clip",
+        transition: "background .4s, color .4s",
       }}>
       <style
         dangerouslySetInnerHTML={{
@@ -3183,7 +3264,7 @@ export default function V3Page({
       `,
         }}
       />
-      <V3Nav p={p} />
+      <V3Nav p={p} isDark={isDark} onToggle={() => setIsDark((d) => !d)} />
       <V3Hero p={p} />
       <V3About p={p} />
       <V3SkillTree p={p} />

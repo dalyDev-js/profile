@@ -76,7 +76,7 @@ export default function AnimatedShaderBackground({ opacity = 0.55 }: Props) {
 
         void main() {
           vec2 shake = vec2(sin(iTime * 1.2) * 0.005, cos(iTime * 2.1) * 0.005);
-          vec2 p = ((gl_FragCoord.xy + shake * iResolution.xy) - iResolution.xy * 0.5) / iResolution.y * mat2(6.0, -4.0, 4.0, 6.0);
+          vec2 p = ((gl_FragCoord.xy + shake * iResolution.xy) - iResolution.xy * 0.5) / iResolution.y * mat2(3.2, -2.1, 2.1, 3.2);
           vec2 v;
           vec4 o = vec4(0.0);
 
