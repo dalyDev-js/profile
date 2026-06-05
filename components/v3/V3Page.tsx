@@ -604,6 +604,35 @@ function V3Hero({ p }: { p: V3Palette }) {
             }}>
             Get in Touch
           </a>
+          <a
+            href="/cv.pdf"
+            download="Abdulrhman-ElDaly-CV.pdf"
+            style={{
+              padding: "0.9rem 2.4rem",
+              background: "transparent",
+              border: `1px solid ${p.pri}60`,
+              color: p.pri,
+              textDecoration: "none",
+              fontSize: "0.72rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              fontFamily: "var(--v3-jb)",
+              borderRadius: "4px",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              transition: "border-color .2s, background .2s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = p.pri;
+              (e.currentTarget as HTMLElement).style.background = `${p.pri}18`;
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = `${p.pri}60`;
+              (e.currentTarget as HTMLElement).style.background = "transparent";
+            }}>
+            ↓ Resume
+          </a>
         </motion.div>
 
         {/* Social links */}
