@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
-import Navbar from "@/components/layout/Navbar";
+import ConditionalNavbar from "@/components/layout/ConditionalNavbar";
 import Preloader from "@/components/layout/Preloader";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 
@@ -60,7 +60,7 @@ export default function RootLayout({
       >
         <Preloader />
         <SmoothScrollProvider>
-          <Navbar />
+          <ConditionalNavbar />
           <GrainOverlay />
           {children}
         </SmoothScrollProvider>
