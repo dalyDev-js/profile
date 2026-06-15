@@ -243,6 +243,14 @@ const PROJECTS = [
     image: "/projects/rakam.png",
   },
   {
+    title: "CallStack",
+    description:
+      "Interactive learning tool that teaches the JavaScript call stack visually — watch stack frames push and pop, the callback queue, and the event loop run in rounds with step-by-step playback. Includes a live playground so devs stop memorizing and start seeing how the engine really executes.",
+    tech: ["Next.js", "React", "TypeScript", "Framer Motion", "Visualization"],
+    badge: "Personal Product",
+    image: "/projects/callstack.png",
+  },
+  {
     title: "AlBootcamp",
     description:
       "Online coding bootcamp platform with course management, student progress tracking, cohort tools, and community features.",
