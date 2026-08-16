@@ -28,14 +28,18 @@ function useResponsive() {
   };
 }
 
+// Both are VARIABLE fonts. Pinning `weight` makes next/font fetch individual
+// static instances from gstatic, and some of those JetBrains Mono files now
+// 404 — which failed the Vercel build the moment the font cache was cold.
+// Omitting `weight` pulls the single variable file and covers the whole range.
 const sg = Space_Grotesk({
-  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
+  display: "swap",
   variable: "--v3-sg",
 });
 const jb = JetBrains_Mono({
-  weight: ["300", "400", "500"],
   subsets: ["latin"],
+  display: "swap",
   variable: "--v3-jb",
 });
 
