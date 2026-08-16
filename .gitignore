@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# browser-automation scratch output (screenshots, console logs, a11y snapshots)
+.playwright-mcp/

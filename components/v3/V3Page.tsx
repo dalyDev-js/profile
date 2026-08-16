@@ -22,7 +22,10 @@ function useResponsive() {
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
-  return { isMobile: width > 0 && width < 768, isTablet: width >= 768 && width < 1024 };
+  return {
+    isMobile: width > 0 && width < 768,
+    isTablet: width >= 768 && width < 1024,
+  };
 }
 
 const sg = Space_Grotesk({
@@ -95,7 +98,6 @@ export const PALETTE_LIGHT: V3Palette = {
     tools: { c: "#16A34A", rgb: "22,163,74", label: "Tools" },
   },
 };
-
 
 // ── Skills ────────────────────────────────────────────────────────────────────
 const SKILLS: { name: string; cat: Cat; prof: number }[] = [
@@ -334,7 +336,15 @@ const PROJECTS = [
 // ══════════════════════════════════════════════════════════════════════════════
 //  NAV
 // ══════════════════════════════════════════════════════════════════════════════
-function ThemeToggle({ isDark, onToggle, p }: { isDark: boolean; onToggle: () => void; p: V3Palette }) {
+function ThemeToggle({
+  isDark,
+  onToggle,
+  p,
+}: {
+  isDark: boolean;
+  onToggle: () => void;
+  p: V3Palette;
+}) {
   return (
     <motion.button
       onClick={onToggle}
@@ -374,7 +384,14 @@ function ThemeToggle({ isDark, onToggle, p }: { isDark: boolean; onToggle: () =>
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
         ) : (
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round">
             <circle cx="12" cy="12" r="4" />
             <line x1="12" y1="2" x2="12" y2="5" />
             <line x1="12" y1="19" x2="12" y2="22" />
@@ -391,7 +408,15 @@ function ThemeToggle({ isDark, onToggle, p }: { isDark: boolean; onToggle: () =>
   );
 }
 
-function V3Nav({ p, isDark, onToggle }: { p: V3Palette; isDark: boolean; onToggle: () => void }) {
+function V3Nav({
+  p,
+  isDark,
+  onToggle,
+}: {
+  p: V3Palette;
+  isDark: boolean;
+  onToggle: () => void;
+}) {
   const { isMobile } = useResponsive();
   const links = [
     ["About", "#v3-about"],
@@ -512,7 +537,6 @@ function V3Hero({ p }: { p: V3Palette }) {
         overflow: "hidden",
         background: p.bg,
       }}>
-
       {/* Shader aurora — base layer */}
       <AnimatedShaderBackground opacity={0.6} />
 
@@ -552,7 +576,6 @@ function V3Hero({ p }: { p: V3Palette }) {
           flexDirection: "column",
           alignItems: "center",
         }}>
-
         {/* Label with side lines */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -564,17 +587,30 @@ function V3Hero({ p }: { p: V3Palette }) {
             gap: "1rem",
             marginBottom: isMobile ? "1.5rem" : "2rem",
           }}>
-          <div style={{ flex: 1, height: "1px", background: `linear-gradient(to right, transparent, ${p.pri}50)` }} />
-          <span style={{
-            fontFamily: "var(--v3-jb)",
-            fontSize: "0.6rem",
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: p.pri,
-          }}>
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              background: `linear-gradient(to right, transparent, ${p.pri}50)`,
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--v3-jb)",
+              fontSize: "0.6rem",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              color: p.pri,
+            }}>
             Senior Frontend Developer · Full-Stack Engineer
           </span>
-          <div style={{ flex: 1, height: "1px", background: `linear-gradient(to left, transparent, ${p.pri}50)` }} />
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              background: `linear-gradient(to left, transparent, ${p.pri}50)`,
+            }}
+          />
         </motion.div>
 
         {/* Name */}
@@ -584,7 +620,9 @@ function V3Hero({ p }: { p: V3Palette }) {
           transition={{ delay: 0.35, duration: 1, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontFamily: "var(--v3-sg)",
-            fontSize: isMobile ? "clamp(52px,14vw,72px)" : "clamp(64px,8vw,110px)",
+            fontSize: isMobile
+              ? "clamp(52px,14vw,72px)"
+              : "clamp(64px,8vw,110px)",
             fontWeight: 700,
             lineHeight: 1.0,
             letterSpacing: "-0.04em",
@@ -598,7 +636,9 @@ function V3Hero({ p }: { p: V3Palette }) {
           transition={{ delay: 0.48, duration: 1, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontFamily: "var(--v3-sg)",
-            fontSize: isMobile ? "clamp(52px,14vw,72px)" : "clamp(64px,8vw,110px)",
+            fontSize: isMobile
+              ? "clamp(52px,14vw,72px)"
+              : "clamp(64px,8vw,110px)",
             fontWeight: 700,
             lineHeight: 1.0,
             letterSpacing: "-0.04em",
@@ -657,11 +697,13 @@ function V3Hero({ p }: { p: V3Palette }) {
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.opacity = "0.85";
-              (e.currentTarget as HTMLElement).style.boxShadow = `0 0 40px ${p.pri}70`;
+              (e.currentTarget as HTMLElement).style.boxShadow =
+                `0 0 40px ${p.pri}70`;
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLElement).style.opacity = "1";
-              (e.currentTarget as HTMLElement).style.boxShadow = `0 0 24px ${p.pri}40`;
+              (e.currentTarget as HTMLElement).style.boxShadow =
+                `0 0 24px ${p.pri}40`;
             }}>
             View Projects
           </a>
@@ -727,7 +769,11 @@ function V3Hero({ p }: { p: V3Palette }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.05 }}
-          style={{ display: "flex", gap: "2rem", marginBottom: isMobile ? "2.5rem" : "3.5rem" }}>
+          style={{
+            display: "flex",
+            gap: "2rem",
+            marginBottom: isMobile ? "2.5rem" : "3.5rem",
+          }}>
           {[
             ["GitHub", "https://github.com/dalyDev-js"],
             ["LinkedIn", "https://linkedin.com/in/abdulrhman-eldaly"],
@@ -746,8 +792,12 @@ function V3Hero({ p }: { p: V3Palette }) {
                 fontFamily: "var(--v3-jb)",
                 transition: "color .2s",
               }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = p.pri)}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = p.muted)}>
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLElement).style.color = p.pri)
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLElement).style.color = p.muted)
+              }>
               {l} ↗
             </a>
           ))}
@@ -825,7 +875,13 @@ function V3Hero({ p }: { p: V3Palette }) {
 // ══════════════════════════════════════════════════════════════════════════════
 //  ABOUT
 // ══════════════════════════════════════════════════════════════════════════════
-function V3About({ p }: { p: V3Palette }) {
+export function V3About({
+  p,
+  showStats = true,
+}: {
+  p: V3Palette;
+  showStats?: boolean;
+}) {
   const { isMobile } = useResponsive();
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -881,10 +937,10 @@ function V3About({ p }: { p: V3Palette }) {
             />
           </div>
 
-          {/* Stats */}
+          {/* Stats — /v4 renders these as its own section instead */}
           <div
             style={{
-              display: "grid",
+              display: showStats ? "grid" : "none",
               gridTemplateColumns: isMobile ? "repeat(2,1fr)" : "repeat(4,1fr)",
               gap: "1.2rem",
               marginBottom: isMobile ? "3rem" : "5rem",
@@ -1177,6 +1233,9 @@ function V3About({ p }: { p: V3Palette }) {
                   }}
                 />
                 <motion.div
+                  // /v4 lands its paper sheet in this box — target the slot, not
+                  // the <img>, so it survives the image being removed.
+                  data-portrait-slot=""
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
                   style={{
@@ -1185,8 +1244,13 @@ function V3About({ p }: { p: V3Palette }) {
                     overflow: "hidden",
                     border: `1px solid ${p.br}`,
                     flex: 1,
+                    // The slot is empty (the <img> is commented out) and /v4
+                    // paints it with the paper sheet. Without a floor, `flex: 1`
+                    // collapses it to nothing once the column stacks on mobile,
+                    // and the paper scales to zero with it.
+                    minHeight: "clamp(340px, 82vw, 560px)",
                   }}>
-                  <Image
+                  {/* <Image
                     src="/v3-side.png"
                     alt="Abdulrhman El-Daly"
                     width={420}
@@ -1199,7 +1263,7 @@ function V3About({ p }: { p: V3Palette }) {
                       background: p.s2,
                       display: "block",
                     }}
-                  />
+                  /> */}
                 </motion.div>
               </div>
             </motion.div>
@@ -1221,7 +1285,7 @@ const LEAF_NODES = FRUITS.map((f) => ({
   si: f.si,
 }));
 
-function V3SkillTree({ p }: { p: V3Palette }) {
+export function V3SkillTree({ p }: { p: V3Palette }) {
   const { isMobile } = useResponsive();
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -1337,7 +1401,9 @@ function V3SkillTree({ p }: { p: V3Palette }) {
             src="/colorful-tree.svg"
             alt="Skill Tree"
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            animate={
+              inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }
+            }
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             style={{
               width: "100%",
@@ -1363,7 +1429,9 @@ function V3SkillTree({ p }: { p: V3Palette }) {
                 }}>
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
-                  animate={inView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                  animate={
+                    inView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
+                  }
                   transition={{
                     delay: 0.6 + i * 0.09,
                     type: "spring",
@@ -1764,7 +1832,7 @@ function JourneyCard({ exp, i, total, active, p }: JourneyCardProps) {
   );
 }
 
-function V3Experience({ p }: { p: V3Palette }) {
+export function V3Experience({ p }: { p: V3Palette }) {
   const { isMobile } = useResponsive();
   const outerRef = useRef<HTMLDivElement>(null);
   const inView = useInView(outerRef, { once: true, margin: "-80px" });
@@ -1791,12 +1859,12 @@ function V3Experience({ p }: { p: V3Palette }) {
   // Sample midpoints on each cubic bezier segment so the orb follows the curve
   const orbX = useTransform(
     scrollYProgress,
-    [0, 1/6, 1/3, 1/2, 2/3, 5/6, 1],
+    [0, 1 / 6, 1 / 3, 1 / 2, 2 / 3, 5 / 6, 1],
     [80, 43, 55, 99, 105, 76, 80],
   );
   const orbY = useTransform(
     scrollYProgress,
-    [0, 1/6, 1/3, 1/2, 2/3, 5/6, 1],
+    [0, 1 / 6, 1 / 3, 1 / 2, 2 / 3, 5 / 6, 1],
     [30, 120, 210, 300, 390, 480, 570],
   );
 
@@ -1832,7 +1900,10 @@ function V3Experience({ p }: { p: V3Palette }) {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ padding: isMobile ? "1.5rem 1.5rem 0.5rem" : "2.5rem 3rem 0.5rem", flexShrink: 0 }}>
+          style={{
+            padding: isMobile ? "1.5rem 1.5rem 0.5rem" : "2.5rem 3rem 0.5rem",
+            flexShrink: 0,
+          }}>
           <div
             style={{
               display: "flex",
@@ -1895,163 +1966,166 @@ function V3Experience({ p }: { p: V3Palette }) {
             gap: "1rem",
           }}>
           {/* Timeline SVG column */}
-          {!isMobile && <div style={{ width: "180px", flexShrink: 0, position: "relative" }}>
-            <svg
-              viewBox="0 0 160 600"
-              style={{ width: "100%", height: "100%", display: "block" }}
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <filter
-                  id="orbGlow"
-                  x="-200%"
-                  y="-200%"
-                  width="500%"
-                  height="500%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-                <filter
-                  id="nodeGlow"
-                  x="-120%"
-                  y="-120%"
-                  width="340%"
-                  height="340%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
+          {!isMobile && (
+            <div
+              style={{ width: "180px", flexShrink: 0, position: "relative" }}>
+              <svg
+                viewBox="0 0 160 600"
+                style={{ width: "100%", height: "100%", display: "block" }}
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <filter
+                    id="orbGlow"
+                    x="-200%"
+                    y="-200%"
+                    width="500%"
+                    height="500%">
+                    <feGaussianBlur stdDeviation="6" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <filter
+                    id="nodeGlow"
+                    x="-120%"
+                    y="-120%"
+                    width="340%"
+                    height="340%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
 
-              <path
-                d={pathD}
-                fill="none"
-                stroke={p.br}
-                strokeWidth="2"
-                strokeLinecap="round"
-                opacity="0.7"
-              />
-              <motion.path
-                d={pathD}
-                fill="none"
-                stroke={p.pri}
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                style={{ pathLength: scrollYProgress }}
-                opacity="0.85"
-              />
+                <path
+                  d={pathD}
+                  fill="none"
+                  stroke={p.br}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  opacity="0.7"
+                />
+                <motion.path
+                  d={pathD}
+                  fill="none"
+                  stroke={p.pri}
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  style={{ pathLength: scrollYProgress }}
+                  opacity="0.85"
+                />
 
-              {NODES.map((node, i) => {
-                const isActive = i === active;
-                const labelRight = node.x >= 80;
-                return (
-                  <g key={i}>
-                    {isActive && (
-                      <>
-                        <motion.circle
-                          cx={node.x}
-                          cy={node.y}
-                          initial={{ r: 10 }}
-                          fill={p.pri}
-                          animate={{
-                            r: [10, 20, 10],
-                            opacity: [0.28, 0, 0.28],
-                          }}
-                          transition={{
-                            duration: 1.8,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                          filter="url(#nodeGlow)"
-                        />
-                        <motion.circle
-                          cx={node.x}
-                          cy={node.y}
-                          initial={{ r: 18 }}
-                          fill="none"
-                          stroke={p.pri}
-                          strokeWidth="1"
-                          animate={{
-                            r: [18, 30, 18],
-                            opacity: [0.14, 0, 0.14],
-                          }}
-                          transition={{
-                            duration: 1.8,
-                            repeat: Infinity,
-                            delay: 0.35,
-                            ease: "easeInOut",
-                          }}
-                        />
-                      </>
-                    )}
-                    <circle
-                      cx={node.x}
-                      cy={node.y}
-                      r={isActive ? 5.5 : 3.5}
-                      fill={isActive ? p.pri : p.bg}
-                      stroke={isActive ? p.pri : p.muted}
-                      strokeWidth="1.5"
-                    />
-                    <text
-                      x={labelRight ? node.x + 14 : node.x - 14}
-                      y={node.y + 4}
-                      textAnchor={labelRight ? "start" : "end"}
-                      fill={isActive ? p.pri : p.muted}
-                      fontSize="9.5"
-                      fontFamily="var(--v3-jb)">
-                      {i === 0
-                        ? "Now"
-                        : (EXPS[i].period.match(/\d{4}/)?.[0] ?? "")}
-                    </text>
-                    <text
-                      x={labelRight ? node.x + 14 : node.x - 14}
-                      y={node.y + 17}
-                      textAnchor={labelRight ? "start" : "end"}
-                      fill={isActive ? `${p.fg}AA` : `${p.muted}55`}
-                      fontSize="7.5"
-                      fontFamily="var(--v3-sg)">
-                      {i === 0
-                        ? "Current"
-                        : EXPS[i].company.split(" ").slice(0, 2).join(" ")}
-                    </text>
-                  </g>
-                );
-              })}
+                {NODES.map((node, i) => {
+                  const isActive = i === active;
+                  const labelRight = node.x >= 80;
+                  return (
+                    <g key={i}>
+                      {isActive && (
+                        <>
+                          <motion.circle
+                            cx={node.x}
+                            cy={node.y}
+                            initial={{ r: 10 }}
+                            fill={p.pri}
+                            animate={{
+                              r: [10, 20, 10],
+                              opacity: [0.28, 0, 0.28],
+                            }}
+                            transition={{
+                              duration: 1.8,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            filter="url(#nodeGlow)"
+                          />
+                          <motion.circle
+                            cx={node.x}
+                            cy={node.y}
+                            initial={{ r: 18 }}
+                            fill="none"
+                            stroke={p.pri}
+                            strokeWidth="1"
+                            animate={{
+                              r: [18, 30, 18],
+                              opacity: [0.14, 0, 0.14],
+                            }}
+                            transition={{
+                              duration: 1.8,
+                              repeat: Infinity,
+                              delay: 0.35,
+                              ease: "easeInOut",
+                            }}
+                          />
+                        </>
+                      )}
+                      <circle
+                        cx={node.x}
+                        cy={node.y}
+                        r={isActive ? 5.5 : 3.5}
+                        fill={isActive ? p.pri : p.bg}
+                        stroke={isActive ? p.pri : p.muted}
+                        strokeWidth="1.5"
+                      />
+                      <text
+                        x={labelRight ? node.x + 14 : node.x - 14}
+                        y={node.y + 4}
+                        textAnchor={labelRight ? "start" : "end"}
+                        fill={isActive ? p.pri : p.muted}
+                        fontSize="9.5"
+                        fontFamily="var(--v3-jb)">
+                        {i === 0
+                          ? "Now"
+                          : (EXPS[i].period.match(/\d{4}/)?.[0] ?? "")}
+                      </text>
+                      <text
+                        x={labelRight ? node.x + 14 : node.x - 14}
+                        y={node.y + 17}
+                        textAnchor={labelRight ? "start" : "end"}
+                        fill={isActive ? `${p.fg}AA` : `${p.muted}55`}
+                        fontSize="7.5"
+                        fontFamily="var(--v3-sg)">
+                        {i === 0
+                          ? "Current"
+                          : EXPS[i].company.split(" ").slice(0, 2).join(" ")}
+                      </text>
+                    </g>
+                  );
+                })}
 
-              <motion.circle
-                cx={orbX}
-                cy={orbY}
-                r="12"
-                fill={p.pri}
-                opacity="0.2"
-                filter="url(#orbGlow)"
-              />
-              <motion.circle
-                cx={orbX}
-                cy={orbY}
-                initial={{ r: 7 }}
-                fill={p.pri}
-                animate={{ r: [6, 8, 6], opacity: [0.9, 1, 0.9] }}
-                transition={{
-                  duration: 1.6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              <motion.circle
-                cx={orbX}
-                cy={orbY}
-                r="3"
-                fill="white"
-                opacity="0.85"
-              />
-            </svg>
-          </div>}
+                <motion.circle
+                  cx={orbX}
+                  cy={orbY}
+                  r="12"
+                  fill={p.pri}
+                  opacity="0.2"
+                  filter="url(#orbGlow)"
+                />
+                <motion.circle
+                  cx={orbX}
+                  cy={orbY}
+                  initial={{ r: 7 }}
+                  fill={p.pri}
+                  animate={{ r: [6, 8, 6], opacity: [0.9, 1, 0.9] }}
+                  transition={{
+                    duration: 1.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.circle
+                  cx={orbX}
+                  cy={orbY}
+                  r="3"
+                  fill="white"
+                  opacity="0.85"
+                />
+              </svg>
+            </div>
+          )}
 
           {/* Solitaire card stack — active card at bottom, past cards peek behind */}
           <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
@@ -2140,12 +2214,15 @@ function ProjectSlide({
   return (
     <motion.div
       style={{
-        position: "absolute", inset: 0, clipPath, zIndex: idx, background: p.bg,
+        position: "absolute",
+        inset: 0,
+        clipPath,
+        zIndex: idx,
+        background: p.bg,
         display: isMobile ? "flex" : undefined,
         flexDirection: isMobile ? "column" : undefined,
         overflow: isMobile ? "hidden" : undefined,
       }}>
-
       {isMobile ? (
         /* ── MOBILE: full-width image in flow, text panel below ── */
         // eslint-disable-next-line @next/next/no-img-element
@@ -2164,132 +2241,203 @@ function ProjectSlide({
             }}
           />
         ) : (
-          <div style={{
-            height: "220px", flexShrink: 0, marginTop: "3.5rem",
-            background: `linear-gradient(135deg,${p.s1},${p.s2})`,
-            position: "relative",
-          }}>
-            <div style={{
-              position: "absolute", inset: 0,
-              background: `radial-gradient(ellipse at 70% 50%,${c}22 0%,transparent 55%)`,
-            }} />
+          <div
+            style={{
+              height: "220px",
+              flexShrink: 0,
+              marginTop: "3.5rem",
+              background: `linear-gradient(135deg,${p.s1},${p.s2})`,
+              position: "relative",
+            }}>
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: `radial-gradient(ellipse at 70% 50%,${c}22 0%,transparent 55%)`,
+              }}
+            />
           </div>
         )
+      ) : /* ── DESKTOP: full-screen absolute-positioned background ── */
+      "image" in proj && proj.image ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={proj.image}
+          alt={proj.title}
+          loading="lazy"
+          style={{
+            position: "absolute",
+            top: "64px",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: "100%",
+            height: "calc(100% - 64px)",
+            objectFit: "cover",
+            objectPosition: "center top",
+            opacity: 0.9,
+            filter: "saturate(0.95) contrast(1.04)",
+          }}
+        />
       ) : (
-        /* ── DESKTOP: full-screen absolute-positioned background ── */
-        "image" in proj && proj.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={proj.image}
-            alt={proj.title}
-            loading="lazy"
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `linear-gradient(135deg,${p.s1},${p.s2})`,
+          }}>
+          <div
             style={{
               position: "absolute",
-              top: "64px", left: 0, right: 0, bottom: 0,
-              width: "100%", height: "calc(100% - 64px)",
-              objectFit: "cover", objectPosition: "center top",
-              opacity: 0.9,
-              filter: "saturate(0.95) contrast(1.04)",
-            }}
-          />
-        ) : (
-          <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg,${p.s1},${p.s2})` }}>
-            <div style={{
-              position: "absolute", inset: 0,
+              inset: 0,
               backgroundImage: `linear-gradient(${c}10 1px,transparent 1px),linear-gradient(90deg,${c}10 1px,transparent 1px)`,
               backgroundSize: "56px 56px",
-            }} />
-            <div style={{
-              position: "absolute", inset: 0,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
               background: `radial-gradient(ellipse at 70% 50%,${c}22 0%,transparent 55%)`,
-            }} />
-            <div style={{
-              position: "absolute", bottom: "1.5rem", right: "3rem",
-              fontFamily: "var(--v3-jb)", fontSize: "clamp(120px,18vw,240px)",
-              fontWeight: 700, color: `${c}08`, lineHeight: 1,
-              userSelect: "none", letterSpacing: "-0.04em",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: "1.5rem",
+              right: "3rem",
+              fontFamily: "var(--v3-jb)",
+              fontSize: "clamp(120px,18vw,240px)",
+              fontWeight: 700,
+              color: `${c}08`,
+              lineHeight: 1,
+              userSelect: "none",
+              letterSpacing: "-0.04em",
             }}>
-              {String(idx + 1).padStart(2, "0")}
-            </div>
-            <div style={{
-              position: "absolute", top: "50%", right: "22%",
-              transform: "translateY(-50%)", width: 260, height: 260,
+            {String(idx + 1).padStart(2, "0")}
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              right: "22%",
+              transform: "translateY(-50%)",
+              width: 260,
+              height: 260,
               borderRadius: "50%",
               background: `radial-gradient(circle,${c}28 0%,transparent 70%)`,
               boxShadow: `0 0 120px ${c}30,0 0 240px ${c}12`,
               pointerEvents: "none",
-            }} />
-          </div>
-        )
+            }}
+          />
+        </div>
       )}
 
       {/* Desktop: gradient overlays */}
-      {!isMobile && <>
-        <div style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          background: `linear-gradient(to right,${p.bg} 0%,${p.bg}BB 22%,${p.bg}55 40%,transparent 60%)`,
-        }} />
-        <div style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          background: `linear-gradient(to bottom,transparent 80%,${p.bg}88 100%)`,
-        }} />
-      </>}
+      {!isMobile && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              pointerEvents: "none",
+              background: `linear-gradient(to right,${p.bg} 0%,${p.bg}BB 22%,${p.bg}55 40%,transparent 60%)`,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              pointerEvents: "none",
+              background: `linear-gradient(to bottom,transparent 80%,${p.bg}88 100%)`,
+            }}
+          />
+        </>
+      )}
 
       {/* Text panel */}
-      <div style={{
-        position: isMobile ? "relative" : "absolute",
-        inset: isMobile ? undefined : 0,
-        zIndex: 2,
-        flex: isMobile ? 1 : undefined,
-        background: isMobile ? p.bg : undefined,
-        display: "flex", flexDirection: "column",
-        justifyContent: isMobile ? "flex-start" : "center",
-        padding: isMobile ? "1.2rem 1.5rem 2rem" : "5.5rem 3rem 4rem 3.5rem",
-        maxWidth: isMobile ? undefined : "600px",
-      }}>
+      <div
+        style={{
+          position: isMobile ? "relative" : "absolute",
+          inset: isMobile ? undefined : 0,
+          zIndex: 2,
+          flex: isMobile ? 1 : undefined,
+          background: isMobile ? p.bg : undefined,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: isMobile ? "flex-start" : "center",
+          padding: isMobile ? "1.2rem 1.5rem 2rem" : "5.5rem 3rem 4rem 3.5rem",
+          maxWidth: isMobile ? undefined : "600px",
+        }}>
         <div style={{ marginBottom: isMobile ? "0.65rem" : "1.4rem" }}>
-          <span style={{
-            fontFamily: "var(--v3-jb)", fontSize: "0.57rem",
-            letterSpacing: "0.22em", textTransform: "uppercase",
-            padding: "0.3rem 0.9rem", borderRadius: "4px",
-            background: `${c}22`, color: c, border: `1px solid ${c}40`,
-          }}>
+          <span
+            style={{
+              fontFamily: "var(--v3-jb)",
+              fontSize: "0.57rem",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              padding: "0.3rem 0.9rem",
+              borderRadius: "4px",
+              background: `${c}22`,
+              color: c,
+              border: `1px solid ${c}40`,
+            }}>
             {proj.badge}
           </span>
         </div>
 
-        <h2 style={{
-          fontFamily: "var(--v3-sg)",
-          fontSize: isMobile ? "clamp(38px,11vw,58px)" : "clamp(36px,5.5vw,80px)",
-          fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.03,
-          marginBottom: isMobile ? "0.65rem" : "1.4rem", color: p.fg,
-        }}>
-          {proj.title}<span style={{ color: c }}>.</span>
+        <h2
+          style={{
+            fontFamily: "var(--v3-sg)",
+            fontSize: isMobile
+              ? "clamp(38px,11vw,58px)"
+              : "clamp(36px,5.5vw,80px)",
+            fontWeight: 700,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.03,
+            marginBottom: isMobile ? "0.65rem" : "1.4rem",
+            color: p.fg,
+          }}>
+          {proj.title}
+          <span style={{ color: c }}>.</span>
         </h2>
 
-        <p style={{
-          fontFamily: "var(--v3-sg)",
-          fontSize: isMobile ? "1rem" : "0.9rem",
-          lineHeight: isMobile ? 1.6 : 1.82,
-          color: `${p.fg}bb`,
-          maxWidth: "440px",
-          marginBottom: isMobile ? "0.9rem" : "2rem",
-          display: isMobile ? "-webkit-box" : undefined,
-          WebkitLineClamp: isMobile ? 3 : undefined,
-          WebkitBoxOrient: isMobile ? "vertical" as const : undefined,
-          overflow: isMobile ? "hidden" : undefined,
-        }}>
+        <p
+          style={{
+            fontFamily: "var(--v3-sg)",
+            fontSize: isMobile ? "1rem" : "0.9rem",
+            lineHeight: isMobile ? 1.6 : 1.82,
+            color: `${p.fg}bb`,
+            maxWidth: "440px",
+            marginBottom: isMobile ? "0.9rem" : "2rem",
+            display: isMobile ? "-webkit-box" : undefined,
+            WebkitLineClamp: isMobile ? 3 : undefined,
+            WebkitBoxOrient: isMobile ? ("vertical" as const) : undefined,
+            overflow: isMobile ? "hidden" : undefined,
+          }}>
           {proj.description}
         </p>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: isMobile ? "0.9rem" : "2.8rem" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0.4rem",
+            marginBottom: isMobile ? "0.9rem" : "2.8rem",
+          }}>
           {proj.tech.map((t) => (
-            <span key={t} style={{
-              fontFamily: "var(--v3-jb)", fontSize: "0.57rem",
-              letterSpacing: "0.1em", padding: "0.28rem 0.65rem",
-              borderRadius: "4px", background: `${c}14`,
-              color: `${c}DD`, border: `1px solid ${c}28`,
-            }}>
+            <span
+              key={t}
+              style={{
+                fontFamily: "var(--v3-jb)",
+                fontSize: "0.57rem",
+                letterSpacing: "0.1em",
+                padding: "0.28rem 0.65rem",
+                borderRadius: "4px",
+                background: `${c}14`,
+                color: `${c}DD`,
+                border: `1px solid ${c}28`,
+              }}>
               {t}
             </span>
           ))}
@@ -2297,11 +2445,14 @@ function ProjectSlide({
 
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <div style={{ width: 28, height: 1, background: `${c}60` }} />
-          <span style={{
-            fontFamily: "var(--v3-jb)", fontSize: "0.55rem",
-            letterSpacing: "0.22em", textTransform: "uppercase",
-            color: `${p.fg}55`,
-          }}>
+          <span
+            style={{
+              fontFamily: "var(--v3-jb)",
+              fontSize: "0.55rem",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: `${p.fg}55`,
+            }}>
             SCROLL ↓
           </span>
         </div>
@@ -2328,23 +2479,56 @@ function V3Projects({ p }: { p: V3Palette }) {
   const ac = accents[activeIdx % accents.length];
 
   return (
-    <div ref={outerRef} id="v3-projects" style={{ height: `${total * 40}vh`, position: "relative" }}>
-      <section style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", background: p.bg, contain: "layout style paint" }}>
-
-        {/* Top bar */}
-        <div style={{
-          position: "absolute", top: 0, left: 0, right: 0, zIndex: 30,
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-          padding: "1.8rem 3rem",
-          background: `linear-gradient(to bottom,${p.bg}EE 60%,transparent)`,
-          pointerEvents: "none",
+    <div
+      ref={outerRef}
+      id="v3-projects"
+      style={{ height: `${total * 40}vh`, position: "relative" }}>
+      <section
+        style={{
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          overflow: "hidden",
+          background: p.bg,
+          contain: "layout style paint",
         }}>
-          <span style={{ fontFamily: "var(--v3-jb)", fontSize: "0.6rem", letterSpacing: "0.3em", color: p.pri }}>
+        {/* Top bar */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 30,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1.8rem 3rem",
+            background: `linear-gradient(to bottom,${p.bg}EE 60%,transparent)`,
+            pointerEvents: "none",
+          }}>
+          <span
+            style={{
+              fontFamily: "var(--v3-jb)",
+              fontSize: "0.6rem",
+              letterSpacing: "0.3em",
+              color: p.pri,
+            }}>
             04 / PROJECTS
           </span>
-          <div style={{ fontFamily: "var(--v3-jb)", fontSize: "0.72rem", letterSpacing: "0.18em" }}>
-            <span style={{ color: ac }}>{String(activeIdx + 1).padStart(2, "0")}</span>
-            <span style={{ color: p.muted }}> / {String(total).padStart(2, "0")}</span>
+          <div
+            style={{
+              fontFamily: "var(--v3-jb)",
+              fontSize: "0.72rem",
+              letterSpacing: "0.18em",
+            }}>
+            <span style={{ color: ac }}>
+              {String(activeIdx + 1).padStart(2, "0")}
+            </span>
+            <span style={{ color: p.muted }}>
+              {" "}
+              / {String(total).padStart(2, "0")}
+            </span>
           </div>
         </div>
 
@@ -2362,17 +2546,24 @@ function V3Projects({ p }: { p: V3Palette }) {
         ))}
 
         {/* Progress dots */}
-        <div style={{
-          position: "absolute", bottom: "2rem", left: "3.5rem",
-          zIndex: 30, display: "flex", alignItems: "center", gap: "5px",
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "2rem",
+            left: "3.5rem",
+            zIndex: 30,
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+          }}>
           {PROJECTS.map((_, i) => (
             <motion.div
               key={i}
               animate={{
                 width: i === activeIdx ? 26 : 5,
                 opacity: i === activeIdx ? 1 : 0.3,
-                background: i === activeIdx ? accents[activeIdx % accents.length] : p.br,
+                background:
+                  i === activeIdx ? accents[activeIdx % accents.length] : p.br,
               }}
               transition={{ duration: 0.28, ease: "easeOut" }}
               style={{ height: 3, borderRadius: "2px", flexShrink: 0 }}
@@ -2527,7 +2718,6 @@ const BURST_VISIBLE_LINES = [
 const BURST_SPARK_PATH =
   "M29.96 9.81 30.42 8.25C31.24 5.52 29.93 2.61 27.35 1.4L15.26-4.22c-2.36-1.09-3.68-3.64-3.23-6.2l4.27-24.17c.51-2.87-1.21-5.66-4-6.49-2.79-.84-5.77.55-6.92 3.23l-9.71 22.54c-1.03 2.39-3.53 3.79-6.11 3.41l-13.19-1.94c-2.82-.42-5.52 1.3-6.34 4.03l-.46 1.56c-.82 2.73.49 5.64 3.08 6.85l12.08 5.62c2.36 1.09 3.68 3.64 3.23 6.2l-4.27 24.17c-.51 2.87 1.22 5.66 4 6.49 2.79.84 5.77-.55 6.92-3.23l9.71-22.54c1.03-2.39 3.53-3.79 6.11-3.41l13.19 1.94c2.82.42 5.52-1.3 6.34-4.03Z";
 
-
 // ══════════════════════════════════════════════════════════════════════════════
 //  CONTACT
 // ══════════════════════════════════════════════════════════════════════════════
@@ -2570,7 +2760,11 @@ function BurstTick({
 }) {
   const start = 0.22;
   const opacity = useTransform(progress, [start - 0.04, start, 0.9], [0, 1, 0]);
-  const pathLength = useTransform(progress, [start - 0.04, start + 0.1], [0, 1]);
+  const pathLength = useTransform(
+    progress,
+    [start - 0.04, start + 0.1],
+    [0, 1],
+  );
 
   return (
     <motion.g style={{ opacity }} transform={tick.transform}>
@@ -2598,14 +2792,20 @@ function BurstSpark({
   p: V3Palette;
 }) {
   const start = spark.delay;
-  const opacity = useTransform(progress, [start, start + 0.08, 0.94], [0, 1, 0]);
+  const opacity = useTransform(
+    progress,
+    [start, start + 0.08, 0.94],
+    [0, 1, 0],
+  );
   const rotate = useTransform(progress, [start, 0.94], [0, 300]);
-  const scale = useTransform(progress, [start, start + 0.12, 0.94], [0.86, 1, 0.9]);
+  const scale = useTransform(
+    progress,
+    [start, start + 0.12, 0.94],
+    [0.86, 1, 0.9],
+  );
 
   return (
-    <motion.g
-      style={{ opacity }}
-      transform={spark.transform}>
+    <motion.g style={{ opacity }} transform={spark.transform}>
       <motion.g
         style={{
           rotate,
@@ -2635,7 +2835,11 @@ function BurstVisibleLine({
 }) {
   const start = 0.2 + line.delay;
   const opacity = useTransform(progress, [start - 0.04, start, 0.9], [0, 1, 0]);
-  const pathLength = useTransform(progress, [start - 0.04, start + 0.1], [0, 1]);
+  const pathLength = useTransform(
+    progress,
+    [start - 0.04, start + 0.1],
+    [0, 1],
+  );
 
   return (
     <motion.line
@@ -2676,11 +2880,7 @@ function ImpactBurstLayer({
       <g
         transform={`translate(${BURST_TICK_GROUP.x} ${BURST_TICK_GROUP.y}) scale(${BURST_TICK_GROUP.scale})`}>
         {BURST_TICKS.map((tick) => (
-          <BurstTick
-            key={tick.d}
-            tick={tick}
-            progress={progress}
-          />
+          <BurstTick key={tick.d} tick={tick} progress={progress} />
         ))}
       </g>
       {BURST_VISIBLE_LINES.map((line) => (
@@ -2702,7 +2902,7 @@ function ImpactBurstLayer({
   );
 }
 
-function V3FistBumpExact({ p }: { p: V3Palette }) {
+export function V3FistBumpExact({ p }: { p: V3Palette }) {
   const ref = useRef<HTMLElement>(null);
   const burstPlayedRef = useRef(false);
   const burstProgress = useMotionValue(0);
@@ -2880,7 +3080,6 @@ function V3FistBumpExact({ p }: { p: V3Palette }) {
               />
             ))}
           </motion.g>
-
         </svg>
       </div>
 

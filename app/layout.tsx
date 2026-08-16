@@ -16,27 +16,49 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const TITLE =
+  "Abdulrhman El-Daly — Senior Frontend Developer & Full-Stack Engineer";
+const DESCRIPTION =
+  "Senior Frontend Developer and Full-Stack Engineer with 5+ years building high-performance web apps in React, Next.js and TypeScript, backed by Java, Spring Boot, NestJS and PostgreSQL.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://eldaly.me"),
-  title: "Abdulrhman El-Daly | Senior Frontend Developer & UI/UX Developer",
-  description:
-    "Portfolio of Abdulrhman El-Daly — Senior Frontend Developer and UI/UX Developer with 5+ years of experience building high-performance web applications.",
-  alternates: {
-    canonical: "/",
+  // Sub-pages get "<their title> · Abdulrhman El-Daly" without repeating it.
+  title: {
+    default: TITLE,
+    template: "%s · Abdulrhman El-Daly",
   },
+  description: DESCRIPTION,
+  applicationName: "Abdulrhman El-Daly",
+  authors: [{ name: "Abdulrhman El-Daly", url: "https://eldaly.me" }],
+  creator: "Abdulrhman El-Daly",
+  keywords: [
+    "Abdulrhman El-Daly",
+    "Senior Frontend Developer",
+    "Full-Stack Engineer",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript",
+    "NestJS",
+    "Spring Boot",
+    "PostgreSQL",
+    "UI/UX",
+    "Portfolio",
+    "Egypt",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
-    type: "website",
+    type: "profile",
     url: "https://eldaly.me",
-    title: "Abdulrhman El-Daly | Senior Frontend Developer & UI/UX Developer",
-    description:
-      "Portfolio of Abdulrhman El-Daly — Senior Frontend Developer and UI/UX Developer with 5+ years of experience building high-performance web applications.",
+    title: TITLE,
+    description: DESCRIPTION,
     siteName: "Abdulrhman El-Daly",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abdulrhman El-Daly | Senior Frontend Developer & UI/UX Developer",
-    description:
-      "Portfolio of Abdulrhman El-Daly — Senior Frontend Developer and UI/UX Developer with 5+ years of experience building high-performance web applications.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
   robots: {
     index: true,
@@ -44,6 +66,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
 };
