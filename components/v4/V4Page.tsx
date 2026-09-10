@@ -328,7 +328,7 @@ export default function V4Page({ displayFont }: { displayFont: string }) {
           <a href="https://www.linkedin.com/in/abdulrhman-eldaly/" target="_blank" rel="noopener">
             LinkedIn
           </a>
-          <a href="https://github.com/abdulrhmaneldaly" target="_blank" rel="noopener">
+          <a href="https://github.com/dalyDev-js" target="_blank" rel="noopener">
             GitHub
           </a>
           <a href="/cv.pdf" target="_blank" rel="noopener">

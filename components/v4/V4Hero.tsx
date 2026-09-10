@@ -297,23 +297,6 @@ export default function V4Hero({ displayFont }: { displayFont: string }) {
       >
         Senior Frontend Developer · Full-Stack Engineer · 2026
       </div>
-
-      <div
-        style={{
-          position: "absolute",
-          right: "clamp(20px, 4vw, 56px)",
-          bottom: 46,
-          zIndex: 2,
-          fontSize: 11,
-          fontWeight: 600,
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          color: "#7A7A80",
-        }}
-      >
-        Scroll ↓
-      </div>
-
     </section>
   );
 }
