@@ -251,8 +251,8 @@ export default function V4ThenNow({ displayFont }: { displayFont: string }) {
             Then · {THEN_YEAR}
           </div>
 
-          {/* headroom the ball occupies before it drops */}
-          <div style={{ flex: "0 0 30vh", pointerEvents: "none" }} />
+          {/* breathing room under the "Then" label */}
+          <div style={{ flex: "0 0 12vh", pointerEvents: "none" }} />
 
           <div
             className="v4-then"
@@ -323,6 +323,25 @@ export default function V4ThenNow({ displayFont }: { displayFont: string }) {
                 The tools have gotten a lot better since. The obsession never
                 went anywhere.
               </p>
+              {/* Lives in the text column, so the grid's centring lifts the copy
+                  and the whole column sits centred against the print. */}
+              <video
+                src="/v4/doom.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-label="Doom 95 gameplay"
+                style={{
+                  display: "block",
+                  width: "min(400px, 100%)",
+                  aspectRatio: "16 / 9",
+                  marginTop: 28,
+                  borderRadius: 6,
+                  boxShadow: "0 24px 48px rgba(0,0,0,0.5)",
+                }}
+              />
             </div>
           </div>
         </div>
